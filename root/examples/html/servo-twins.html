@@ -1,0 +1,41 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+    <head>
+        <script src="/js/linino/socket.io.js"></script>
+        <script src="/js/linino/ideino-linino-lib-client.js"></script>
+        <style>
+            .text {
+                width: 150px;
+                height: 65px;
+                border: 1px solid gray;
+                border-radius: 5;
+                font-family: courier;
+                font-size: 1.1em;
+                text-align: center;
+                vertical-align: center;
+            }
+        </style>
+        <script>
+          window.onload = connect(location.hostname);
+             //PanTilt
+            function move(ctrl) {
+                writeData(ctrl.id, 'value', ctrl.value);
+            }
+        </script>
+    </head>
+
+    <body>
+        <p>
+            <span class="text">
+            Horizontal
+            <input type="range" id="sliderH" name="sliderH" min="0" max="180" onmouseup="move(this);">
+            </span>
+        </p>
+        <p>
+            <span class="text">
+            Vertical
+            <input type="range" id="sliderV" name="sliderV" min="0" max="180" onmouseup="move(this);">
+            </span>
+        </p>
+    </body>
+</html>

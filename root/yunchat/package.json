@@ -1,0 +1,30 @@
+{
+  "name": "create_rdf",
+  "version": "1.0.0",
+  "description": "a sample app to create rdf graphs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+  "start": "node index.js"
+},
+  "keywords": [
+    "rdf",
+    "graph",
+    "create",
+    "sparql",
+    "data",
+    "visualisation",
+    "2D",
+    "3D"
+  ],
+  "author": "@dfaveris - Smag0",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.14.0",
+    "redux": "^3.6.0",
+    "socket.io": "^1.7.1"
+  },
+    "engines": {
+    "node": "6.5.0"
+  }
+}

@@ -1,0 +1,13 @@
+#!/bin/sh /etc/rc.common
+
+START=99
+
+boot() {
+	node /root/spog/ &
+}
+start() { 
+	node /root/spog/ &
+	}
+stop() {
+	echo "spog stopped"
+	}

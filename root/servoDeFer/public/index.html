@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"> 
+		<title>Servo de Fer SmagYun</title>
+		<link rel="stylesheet" href="css/style.css">
+	</head>
+	<body>
+		<div id="container">
+			<!--  <aside class="toolbar" id="size-toolbar">
+			</aside>-->
+			<div id="main">
+				<!--  <canvas id="scratchpad" width="800" height="500"></canvas>-->
+				<button id="gaucheBTN" onclick="gauche()">
+					<img src="/images/arrow-left-bold.png" height="96px">
+					<br>
+					Gauche
+				</button>
+				<button id="droiteBTN" onclick="droite()">
+					<img src="/images/arrow-right-bold.png" height="96px">
+					<br>
+					Droite
+				</button>
+				
+			</div>
+			<!--    <aside class="toolbar" id="color-toolbar">
+			</aside>-->
+			<br>
+			<footer id="footer">
+				<button id="startBTN" onclick="start()">
+					<img src="/images/start.svg" height="96px">
+					<br>
+					Start
+				</button>
+				<div id="vainqueurLbl"></div>
+				<div id="angleLbl"></div>
+			</footer>
+		</div>
+		
+		<script src="/socket.io/socket.io.js"></script>
+		<script src="js/main.js"></script>
+	</body>
+</html>

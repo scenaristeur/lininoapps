@@ -1,0 +1,272 @@
+// Setup basic express server
+var servo = require('./lib/servo');
+var led = require('./lib/led');
+var when = require('when');
+var node = require('when/node');
+var whenKeys = require('when/keys');
+var fs = require('fs');
+var exec = require('child_process').exec;
+var LinuxPWMController = require('./lib/LinuxPWMController').LinuxPWMController;
+
+var rgb = require('./lib/rgb');
+servo.attach();
+led.attach();
+
+var redPin = 6;
+var greenPin = 5;
+var bluePin = 3;
+
+/*Linino GPIO	Yun Pin
+	104		D8
+	105		D9
+	106		D10
+	107		D11
+	114		D5
+	115		D13
+	116		D3
+	117		D2
+	120		D4
+	122		D12
+123		D6 */
+var pinExport = {D3:0, D5:4, D6:5, D9:1,  D10:2, D11:3};
+
+ 
+
+// EXPORT DES PWM
+//?? 123 ? 
+//5 --> D6
+//3 --> D11
+//2 --> D10
+//4 --> D5
+//0 --> D3
+var cmdExportR = 'echo -n 5 > /sys/class/pwm/pwmchip0/export ';
+var cmdExportG = 'echo -n 4 > /sys/class/pwm/pwmchip0/export';
+var cmdExportB = 'echo -n 0 > /sys/class/pwm/pwmchip0/export';
+exec(cmdExportR, function(error, stdout, stderr) {
+	if(stderr){
+		console.log(stderr);
+	}
+});
+exec(cmdExportG, function(error, stdout, stderr) {
+	if(stderr){
+		console.log(stderr);
+	}
+});
+exec(cmdExportB, function(error, stdout, stderr) {
+	if(stderr){
+		console.log(stderr);
+	}
+});
+
+
+
+
+//rgb.attach(redPin, greenPin, bluePin);
+function RGBController(options){
+	options = options || {};
+	var paths = options.paths || {};
+	var redPath = paths.red || 'red';
+	var greenPath = paths.green || 'green';
+	var bluePath = paths.blue || 'blue';
+	var period = Number(options.period || 4000000);
+	
+	console.log(paths);
+	
+	
+	var redPWM = new LinuxPWMController(redPath, period);
+	var greenPWM = new LinuxPWMController(greenPath, period);
+	var bluePWM = new LinuxPWMController(bluePath, period);
+	
+	
+	
+	var currentColors;
+	
+	this.initialize = function initialize(){
+		return when.all([
+			redPWM.enable(),
+			greenPWM.enable(),
+			bluePWM.enable()
+			]).then(function(){
+			return whenKeys.all({
+				red: redPWM.getPulseWidth(),
+				green: greenPWM.getPulseWidth(),
+				blue: bluePWM.getPulseWidth()
+			});
+			}).then(function(initialRGB){
+			currentColors = initialRGB;
+			console.log(currentColors);
+		});
+	};
+	
+	this.setColor = function setColor(red, green, blue){
+		console.log(red+" "+green+" "+blue);
+		return when.all([
+			redPWM.setPulseWidth(red),
+			greenPWM.setPulseWidth(green),
+			bluePWM.setPulseWidth(blue)
+			]).then(function(){
+			currentColors = {
+				red: 1-red,
+				green: 1-green,
+				blue: 1-blue
+			};
+		});
+	};
+	
+	this.getColor = function getColor(){
+		return currentColors;
+	};
+}
+
+var controller = new RGBController(
+{
+	paths:{
+		red: '/sys/class/pwm/pwmchip0/D6',
+		green: '/sys/class/pwm/pwmchip0/D5',
+		blue: '/sys/class/pwm/pwmchip0/D3'
+	}
+}
+);
+controller.initialize();
+console.log(controller);
+/*var app = this;
+app.controller = controller;*/
+controller.setColor(1, 1, 1); // led anode commune allumée , et oui, c'est l'inverse avec l'anode commune
+
+var express = require('express');
+var app = express();
+var server = require('http').createServer(app);
+var io = require('socket.io')(server);
+var port = process.env.PORT || 3000;
+
+
+var five = require("johnny-five"),
+board, lcd;
+
+server.listen(port, function () {
+	//app.controller.setColor(1, 0, 1);
+	console.log('Server listening at port %d', port);
+});
+
+// Routing
+app.use(express.static(__dirname + '/public'));
+
+// Chatroom
+
+var numUsers = 0;
+
+io.on('connection', function (socket) {
+	console.log("connection");
+	var addedUser = false;
+	
+	// when the client emits 'new message', this listens and executes
+	socket.on('new message', function(data){
+		newmessage(data, socket);
+	});
+	
+	// when the client emits 'add user', this listens and executes
+	socket.on('add user', function (username) {
+		console.log(username);
+		if (addedUser) return;
+		
+		// we store the username in the socket session for this client
+		socket.username = username;
+		++numUsers;
+		addedUser = true;
+		socket.emit('login', {
+			numUsers: numUsers
+		});
+		// echo globally (all clients) that a person has connected
+		socket.broadcast.emit('user joined', {
+			username: socket.username,
+			numUsers: numUsers
+		});
+	});
+	
+	// when the client emits 'typing', we broadcast it to others
+	socket.on('typing', function () {
+		//console.log('typing');
+	
+		socket.broadcast.emit('typing', {
+			username: socket.username
+		});
+	});
+	
+	// when the client emits 'stop typing', we broadcast it to others
+	socket.on('stop typing', function () {
+		//	console.log('stop typing');
+		socket.broadcast.emit('stop typing', {
+			username: socket.username
+		});
+	});
+	
+	// when the user disconnects.. perform this
+	socket.on('disconnect', function () {
+		console.log('disconnect');
+		if (addedUser) {
+			--numUsers;
+			
+			// echo globally that this client has left
+			socket.broadcast.emit('user left', {
+				username: socket.username,
+				numUsers: numUsers
+			});
+		}
+	});
+});
+
+function newmessage(data, socket) {
+	// we tell the client to execute 'new message'
+	console.log(data);
+	if(data.indexOf('@yun') === 0){
+		console.log("message pour yun de "+socket.username);
+		messageToYun(data, socket);
+	}
+	socket.broadcast.emit('new message', {
+		username: socket.username,
+		message: data
+	});
+}
+
+function messageToYun(data, socket){
+	console.log('ok');
+	var mess = data;
+	console.log(typeof mess);
+	var commande = mess.split(" ");
+	if (commande[0]=='@yun') {
+		
+		switch(commande[1]) {
+			case 'servo':
+			console.log(commande[2]);
+			servo.write(commande[2]);
+			servo.sleep(1000);
+			break;
+			case 'led':
+			led.write(commande[2]);
+			break;
+			case 'rgb':
+			console.log(controller);
+			controller.setColor(1-commande[2]/255, 1-commande[3]/255, 1-commande[4]/255);
+			break;
+			default:
+			//code block
+		}
+	}
+	
+}
+
+/*
+	echo 1 > /sys/class/pwm/pwmchip0/export
+	echo 20000000  > /sys/class/pwm/pwmchip0/D9/period
+	echo 560000  > /sys/class/pwm/pwmchip0/D9/duty_cycle
+	echo 1  > /sys/class/pwm/pwmchip0/D9/enable
+	
+	//gestion YUN
+	
+	function map_range(value, low1, high1, low2, high2) {
+	return low2 + (high2 - low2) * (value - low1) / (high1 - low1);
+	}
+	function angle2duty_cycle(angle){
+	return map_range (angle, 0, 180, 560000, )
+	}
+*/	

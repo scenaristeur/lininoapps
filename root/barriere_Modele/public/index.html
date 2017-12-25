@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"> 
+	<title>Barriere Lego SmagYun</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="container">
+      <!--  <aside class="toolbar" id="size-toolbar">
+        </aside>-->
+        <div id="main">
+          <!--  <canvas id="scratchpad" width="800" height="500"></canvas>-->
+            <button id="ouvreBTN" onclick="ouvreBarriere()">
+			<img src="/images/go.svg" height="96px">
+			<br>
+			Ouvrir la barrière</button>
+            <button id="fermeBTN" onclick="fermeBarriere()">
+			<img src="/images/stop.svg" height="96px">
+			<br>
+				Fermer la barrière</button>
+        </div>
+    <!--    <aside class="toolbar" id="color-toolbar">
+        </aside>-->
+<br>
+        <footer id="footer">
+
+          <!--  Users connected: <span id="counter">?</span> &middot;
+            Made by <a href="https://mrozwadowski.com/">MR</a> &middot;
+            Fork me on <a href="https://github.com/hejmsdz/sketchpad">GitHub</a>-->
+             by scenaristeur at <a href="https://github.com/scenaristeur/">Scenaristeur/sketchpad</a>
+        </footer>
+    </div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

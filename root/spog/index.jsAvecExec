@@ -1,0 +1,311 @@
+// Setup basic express server
+var express = require('express');
+var app = express();
+var server = require('http').createServer(app);
+var io = require('socket.io')(server);
+var port = process.env.PORT || 3001;
+
+var when = require('when');
+var node = require('when/node');
+var whenKeys = require('when/keys');
+var fs = require('fs');
+var exec = require('child_process').exec;
+var LinuxPWMController = require('./lib/LinuxPWMController').LinuxPWMController;
+
+var vainqueur = null;
+/*Linino GPIO	Yun Pin
+	104		D8
+	105		D9
+	106		D10
+	107		D11
+	114		D5
+	115		D13
+	116		D3
+	117		D2
+	120		D4
+	122		D12
+123		D6 */
+var pinExport = {D3:0, D5:4, D6:5, D9:1,  D10:2, D11:3};
+
+
+
+// EXPORT DES PWM
+//?? 123 ? 
+//5 --> D6
+//3 --> D11
+//2 --> D10
+//4 --> D5
+//0 --> D3
+var cmdExportR = 'echo -n 3 > /sys/class/pwm/pwmchip0/export ';
+var cmdExportG = 'echo -n 2 > /sys/class/pwm/pwmchip0/export';
+var cmdExportB = 'echo -n 4 > /sys/class/pwm/pwmchip0/export';
+exec(cmdExportR, function(error, stdout, stderr) {
+	if(stderr){
+		console.log(stderr);
+	}
+});
+exec(cmdExportG, function(error, stdout, stderr) {
+	if(stderr){
+		console.log(stderr);
+	}
+});
+exec(cmdExportB, function(error, stdout, stderr) {
+	if(stderr){
+		console.log(stderr);
+	}
+});
+
+
+
+function RGBController(options){
+	options = options || {};
+	var paths = options.paths || {};
+	var redPath = paths.red || 'red';
+	var greenPath = paths.green || 'green';
+	var bluePath = paths.blue || 'blue';
+	var period = Number(options.period || 4000000);
+	
+	console.log(paths);
+	
+	
+	var redPWM = new LinuxPWMController(redPath, period);
+	var greenPWM = new LinuxPWMController(greenPath, period);
+	var bluePWM = new LinuxPWMController(bluePath, period);
+	
+	
+	
+	var currentColors;
+	
+	this.initialize = function initialize(){
+		return when.all([
+			redPWM.enable(),
+			greenPWM.enable(),
+			bluePWM.enable()
+			]).then(function(){
+			return whenKeys.all({
+				red: redPWM.getPulseWidth(),
+				green: greenPWM.getPulseWidth(),
+				blue: bluePWM.getPulseWidth()
+			});
+			}).then(function(initialRGB){
+			currentColors = initialRGB;
+			console.log(currentColors);
+		});
+	};
+	
+	this.setColor = function setColor(red, green, blue){
+		console.log(red+" "+green+" "+blue);
+		return when.all([
+			redPWM.setPulseWidth(red),
+			greenPWM.setPulseWidth(green),
+			bluePWM.setPulseWidth(blue)
+			]).then(function(){
+			currentColors = {
+				red: red,
+				green: green,
+				blue: blue
+			};
+			/* ou ceci en fonction de anode ou cathode commune sur led RGB
+				currentColors = {
+				red: 1-red,
+				green: 1-green,
+				blue: 1-blue
+			};*/
+		});
+	};
+	
+	this.incremente = function incremente(pin, score){
+		//	console.log(controller.getColor().red);
+		// console.log(controller.getColor().green);
+		// console.log(controller.getColor().blue);
+		
+		// redPWM.setPulseWidth(red),
+		switch(pin) {
+			case 'red':
+			//console.log(redPWM.getPulseWidth()+1/255);
+			redPWM.setPulseWidth(score/255);
+			var cat = 'cat '+redPWM.dutyCycleFile;
+			exec(cat, function(error, stdout, stderr) {
+				if(stderr){
+					console.log(stderr);
+				}
+			});
+			break;
+			case 'green':
+			//console.log(greenPWM.getPulseWidth()+1/255);
+			greenPWM.setPulseWidth(score/255);
+			var cat = 'cat '+greenPWM.dutyCycleFile;
+			exec(cat, function(error, stdout, stderr) {
+				if(stderr){
+					console.log(stderr);
+				}
+			});
+			break;
+			case 'blue':
+			//console.log(bleuPWM.getPulseWidth()+1/255);
+			bluePWM.setPulseWidth(score/255);
+			var cat = 'cat '+bluePWM.dutyCycleFile;
+			exec(cat, function(error, stdout, stderr) {
+				if(stderr){
+					console.log(stderr);
+				}
+			});
+			break;
+			default:
+			console.log( "pb de couleur");
+		}}
+		
+		
+		this.getColor = function getColor(){
+			return currentColors;
+		};
+}
+
+var controller = new RGBController(
+{
+	paths:{
+		red: '/sys/class/pwm/pwmchip0/D11',
+		green: '/sys/class/pwm/pwmchip0/D10',
+		blue: '/sys/class/pwm/pwmchip0/D5'
+	}
+}
+);
+controller.initialize();
+console.log(controller);
+controller.setColor(0,0,0);
+
+
+
+
+
+
+
+
+
+
+server.listen(port, function () {
+	console.log('Server listening at port %d', port);
+});
+
+// Routing
+app.use(express.static(__dirname + '/public'));
+
+// Render index.html on the main page pour eviter les messages "Cannot GET"
+app.get('*', function(req, res){
+	//	console.log(req);
+	//console.log(res);
+	res.sendFile("/public/index.html", {root: '.'});
+});
+
+var numUsers = 0;
+var equipes = [
+	{
+		id: "rouge",
+		label: "Rouge",
+		nbEquipiers: 0,
+		score: 0,
+		pin: "red"
+	},
+	{
+		id: "vert",
+		label: "Vert",
+		nbEquipiers: 0,
+		score: 0,
+		pin: "green"
+	},
+	{
+		id: "bleu",
+		label: "Bleu",
+		nbEquipiers: 0,
+		score: 0,
+		pin: "blue"
+	},
+	
+];
+
+io.on('connection', function (socket) {
+	console.log("connection");
+	var addedUser = false;
+	socket.emit("initEquipes", equipes);
+	
+	// when the client emits 'new message', this listens and executes
+	socket.on('rejoint', function(data){
+		//	console.log(data.id);
+		for (var i=0; i<equipes.length; i++){
+			var eq = equipes[i];
+			//  console.log(eq);
+			if (eq.id == data.id){
+				socket.color = data.id;
+				eq.nbEquipiers++;
+				io.sockets.emit("initEquipes", equipes);
+			}
+		}
+		
+	});
+	socket.on('quitte', function(data){
+		console.log("QUITTE");
+		console.log(data.id);
+		socket.color = null;
+		for (var i=0; i<equipes.length; i++){
+			var eq = equipes[i];
+			//  console.log(eq);
+			if (eq.id == data.id){
+				eq.nbEquipiers--;
+				io.sockets.emit("initEquipes", equipes);
+			}
+		}
+	});
+	
+		// when the user disconnects.. perform this
+	socket.on('disconnect', function () {
+		console.log('disconnect');
+		for (var i=0; i<equipes.length; i++){
+			var eq = equipes[i];
+			//  console.log(eq);
+			if (eq.id == socket.color){
+				eq.nbEquipiers--;
+				io.sockets.emit("initEquipes", equipes);
+			}
+		}
+		socket.color = null;
+		
+	});
+	
+	socket.on('clic', function(data){
+		//console.log("CLIC");
+		//console.log(data);
+		if(vainqueur == null){
+			for (var i=0; i<equipes.length; i++){
+				var eq = equipes[i];
+				//  console.log(eq);
+				if (eq.id == data.id){
+					eq.score++;
+					io.sockets.emit("initEquipes", equipes);
+					if(eq.score < 255){
+						var pin = eq.pin;
+						console.log(pin+" "+eq.score);
+						controller.incremente(pin, eq.score);
+						
+					}
+					else {
+						vainqueur = eq;
+						io.sockets.emit("vainqueur", eq);
+					}
+					
+				}
+			}
+		}
+		});
+	
+	socket.on('start', function(data){
+		for (var i=0; i<equipes.length; i++){
+			var eq = equipes[i];
+			eq.score = 0;
+			controller.incremente(eq.pin, eq.score);
+			io.sockets.emit("initEquipes", equipes);
+			io.sockets.emit("vainqueur", null);
+			
+		}
+	});
+	// faire quitte equipe en cas de deconnexion
+});

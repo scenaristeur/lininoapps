@@ -1,0 +1,98 @@
+// Setup basic express server
+var express = require('express');
+var app = express();
+var server = require('http').createServer(app);
+var io = require('socket.io')(server);
+var port = process.env.PORT || 3001;
+
+server.listen(port, function () {
+  console.log('Server listening at port %d', port);
+});
+
+// Routing
+app.use(express.static(__dirname + '/public'));
+
+// Render index.html on the main page pour eviter les messages "Cannot GET"
+app.get('*', function(req, res){
+  //	console.log(req);
+  //console.log(res);
+  res.sendFile("/public/index.html", {root: '.'});
+});
+
+var numUsers = 0;
+var equipes = [
+              {
+                id: "rouge",
+                label: "Rouge",
+                nbEquipiers: 0,
+                score: 0
+              },
+              {
+                id: "jaune",
+                label: "Jaune",
+                nbEquipiers: 0,
+                score: 0
+              },
+              {
+                id: "bleu",
+                label: "Bleu",
+                nbEquipiers: 0,
+                score: 0
+              },
+ 
+            ];
+
+io.on('connection', function (socket) {
+	console.log("connection");
+	var addedUser = false;
+  socket.emit("initEquipes", equipes);
+
+	// when the client emits 'new message', this listens and executes
+	socket.on('rejoint', function(data){
+	//	console.log(data.id);
+    for (var i=0; i<equipes.length; i++){
+      var eq = equipes[i];
+    //  console.log(eq);
+      if (eq.id == data.id){
+        eq.nbEquipiers++;
+          io.sockets.emit("initEquipes", equipes);
+      }
+    }
+
+	});
+  socket.on('quitte', function(data){
+    console.log("QUITTE");
+    console.log(data.id);
+    for (var i=0; i<equipes.length; i++){
+      var eq = equipes[i];
+    //  console.log(eq);
+      if (eq.id == data.id){
+        eq.nbEquipiers--;
+          io.sockets.emit("initEquipes", equipes);
+      }
+    }
+  });
+
+  socket.on('clic', function(data){
+    console.log("CLIC");
+    console.log(data);
+    for (var i=0; i<equipes.length; i++){
+      var eq = equipes[i];
+    //  console.log(eq);
+      if (eq.id == data.id){
+        eq.score++;
+          io.sockets.emit("initEquipes", equipes);
+      }
+    }
+  });
+
+  socket.on('start', function(data){
+    for (var i=0; i<equipes.length; i++){
+      var eq = equipes[i];
+      eq.score = 0;
+          io.sockets.emit("initEquipes", equipes);
+
+    }
+  });
+  // faire quitte equipe en cas de deconnexion
+});

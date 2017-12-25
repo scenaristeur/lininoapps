@@ -1,0 +1,13 @@
+#!/bin/sh /etc/rc.common
+
+START=99
+
+boot() {
+	node /root/servoDeFer/ &
+}
+start() { 
+	node /root/servoDeFer/ &
+	}
+stop() {
+	echo "servoDeFer stopped"
+	}

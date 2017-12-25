@@ -1,0 +1,268 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=windows-1250">
+    <script src="/js/linino/socket.io.js"></script>
+    <script src="/js/linino/ideino-linino-lib-client.js"></script>
+    
+    <style>
+        .txtbox{
+            width: 350px; 
+            height: 50px;
+            border: 1px solid gray;
+            border-radius: 5;
+            font-family: courier;
+            font-size:   1.6em; 
+            text-align:center;
+            font-weight: normal;
+            display: none;
+        }
+        
+        .button{
+            width: 150px; 
+            height: 45px;
+            border: 1px solid gray;
+            border-radius: 5;
+            font-family: courier;
+            font-size:   1.2em; 
+            text-align:center;
+            font-weight: bold;
+            display : none;
+        }
+        
+        .desc{
+            font-family: courier;
+            font-size:   0.8em;
+            color: gray;
+        }
+        
+        .desc2{
+            font-family: courier;
+            font-size:   1.0em;
+            font-weight: bold;
+            color: #5E5253;
+        }
+        
+        .side{
+            float: left;
+            width: 300px;
+            height: 100%;
+            background-color: #EBEBEB;
+            text-align: left;
+        }
+        
+        .demos{
+            margin-left: 320px;
+        }
+        
+        .master{
+            overflow: hidden;
+            width: 100%;
+            align-content: center;
+        }
+        
+        .radioUp{
+            font-family: courier;
+            font-size:   1.0em;
+        }
+        
+        .radio{
+            width: 1.5em;
+            height: 1.5em;
+        }  
+    </style>
+
+    <script>    
+		 window.onload = connect(location.hostname);
+		
+		function dread()
+		{
+			digitalRead(document.getElementById('txtPin').value , function(myData){ 
+                document.getElementById('txtValue').value = myData.value; 
+                console.log("dgital read "+myData.value);
+            });
+        }
+		
+		function dwrite()
+		{
+			digitalWrite(document.getElementById('txtPin').value , document.getElementById('txtValue').value );
+		}
+		
+		function aread()
+		{
+			analogRead(document.getElementById('txtPin').value , function(myData){ 
+                document.getElementById('txtValue').value = myData.value; 
+            });
+		}
+		
+		function awrite()
+		{
+			analogWrite(document.getElementById('txtPin').value , document.getElementById('txtValue').value );
+		}
+		
+		function pmode()
+		{
+			pinMode(document.getElementById('txtPin').value , document.getElementById('txtValue').value );
+		}
+    
+    	function swrite()
+		{
+			servoWrite(document.getElementById('txtPin').value , document.getElementById('txtValue').value );
+		}
+        
+    	function awritens()
+		{
+			analogWritens(document.getElementById('txtPin').value , document.getElementById('txtValue').value ,  document.getElementById('txtValue2').value );
+		}        
+    	
+        function stone()
+		{
+			tone(document.getElementById('txtPin').value , document.getElementById('txtValue').value , document.getElementById('txtValue2').value);
+		}
+        
+    	function notone()
+		{
+			noTone(document.getElementById('txtPin').value );
+		}        
+        
+        function sblink()
+		{
+			blink(document.getElementById('txtValue').value, document.getElementById('txtValue2').value, document.getElementById('txtPin').value);
+		}    
+        
+        
+    </script>
+    <script>
+        
+      var dreadDesc = ["Insert pin - ie: D9 for digital pin 9","Value",""],
+          dwriteDesc = ["Insert pin - ie: D13 for digital pin 13","Insert value - ie: 1 to set the value to the pin [values admitted 0 - 1]",""],
+          areadDesc = ["Insert pin - ie: A0 for analog pin 0","Value",""],
+          awriteDesc = ["Insert pin - ie: A0 for analog pin 0","Insert value - ie: 500 to set the value to the pin [values admitted 0 - 1023]",""],
+          swriteDesc = ["Insert pin - ie: S5 for digital pin 5","Insert angle - ie: 180 to set the angle value [values admitted 0 - 180]",""],
+          awritensDesc = ["Insert pin - ie: P11 for pwm pin 11","Insert dutycycle (nanoseconds)","Insert period (nanoseconds)"],
+          stoneDesc = ["Insert pin - ie: P3 for pwm pin 3","Insert frequency (Hz)", "Insert duration (milliseconds)"],
+          notoneDesc = ["Insert pin - ie: P10 for pwm pin 10","",""],
+          sblinkDesc = ["Insert pin - ie: D4 for digital pin 4","Insert delay (milliseconds)","Insert dutation (milliseconds)"],
+          pmodeDesc = ["Insert pin - ie: D13 for digital pin 13, A0 for analog pin 0, S5 for servo mode on digital pin 5, P3 for pwm mode on digital pin 3","Insert mode - ie: output to set a pin in output mode",""];
+                        
+                        
+      var elements, pin, runButton;
+
+	  function showElements(item){
+	  
+	  	var run = document.getElementById("buttonRUN");
+            switch(item.value)
+            {
+                    case "dread" :       
+                        setDesc(dreadDesc);
+						run.onclick = function (){dread();};
+                        break;
+                    case "dwrite" :
+                        setDesc(dwriteDesc);
+						run.onclick = function (){dwrite();};
+                        break;
+                    case "aread" :
+                        setDesc(areadDesc);
+						run.onclick = function (){aread();};
+                        break;
+                    case "awrite" :
+                        setDesc(awriteDesc);
+						run.onclick = function (){awrite();};
+                        break;
+                    case "swrite" :
+                        setDesc(swriteDesc);
+						run.onclick = function (){swrite();};
+                        break;
+                    case "awritens" :
+                        setDesc(awritensDesc);
+						run.onclick = function (){awritens();};
+                        break;
+                    case "stone" :
+                        setDesc(stoneDesc);
+						run.onclick = function (){stone();};
+                        break;
+                    case "notone" :
+                        setDesc(notoneDesc);
+						run.onclick = function (){notone();};
+                        break;
+                    case "sblink" :
+                        setDesc(sblinkDesc);
+						run.onclick = function (){sblink();};
+                        break;
+                    case "pmode" :
+                        setDesc(pmodeDesc);
+						run.onclick = function (){pmode();};
+                        break;      
+            }
+      }
+        
+      function setDesc(desc)
+      {
+          var labels = document.getElementsByClassName("desc"),
+              inputs = document.getElementsByClassName("txtbox");
+          
+              runButton = document.getElementById("buttonRUN");
+          
+          for(var i=0; i<inputs.length; i++)
+          {
+              if(desc[i] == "")
+              {
+                inputs[i].style.display = "none";
+                labels[i].style.display = "none";
+              }
+              else
+              {
+                inputs[i].style.display = "inline";
+                labels[i].style.display = "inline";
+              }
+              
+              labels[i].textContent = desc[i];
+          }
+          runButton.style.display = "inline";
+      }
+
+    </script> 
+  </head>
+  
+  <body>
+    
+      
+    <div id="master" class="master">
+        <div id="side" class="side" >
+            <p class="radioUp">
+                <span class="desc2">Select your sample:</span><br><br>
+                <input type="radio" class="radio" name="menu" value="pmode" id="radio0" onchange="showElements(this)"><label for="radio1">Pin Mode</label><br>
+                
+                <input type="radio" class="radio" name="menu" value="dread" id="radio1" onchange="showElements(this)"><label for="radio1">Digital Read</label><br>
+                <input type="radio" class="radio" name="menu" value="dwrite" id="radio2" onchange="showElements(this)"><label for="radio1">Digital Write</label><br>
+                <input type="radio" class="radio" name="menu" value="aread" id="radio3" onchange="showElements(this)"><label for="radio1">Analog Read</label><br>
+                <input type="radio" class="radio" name="menu" value="awrite" id="radio4" onchange="showElements(this)"><label for="radio1">Analog Write</label><br>
+                
+                <input type="radio" class="radio" name="menu" value="swrite" id="radio5" onchange="showElements(this)"><label for="radio1">Servo Write</label><br>
+                <input type="radio" class="radio" name="menu" value="awritens" id="radio6" onchange="showElements(this)"><label for="radio1">Analog Write ns</label><br>
+                <input type="radio" class="radio" name="menu" value="stone" id="radio7" onchange="showElements(this)"><label for="radio1">Tone</label><br>
+                <input type="radio" class="radio" name="menu" value="notone" id="radio8" onchange="showElements(this)"><label for="radio1">No Tone</label><br>
+                <input type="radio" class="radio" name="menu" value="sblink" id="radio9" onchange="showElements(this)"><label for="radio1">Blink</label><br>
+            </p>
+        </div>
+
+        <div id="demos" class="demos">
+            <p id="label0"></p>
+            <span class="desc"></span><br>
+            <input class="txtbox" type="label" id="txtPin">
+            <br/><br/>
+            <span class="desc"></span><br>
+            <input class="txtbox" type="label" id="txtValue">
+            <br/><br/>
+            <span class="desc"></span><br>
+            <input class="txtbox" type="label" id="txtValue2">
+
+            <br/><br/><br/><br/>
+            <input type="button" id="buttonRUN" class="button" value="Run">
+            
+        </div>
+    </div>
+  </body>
+
+</html>

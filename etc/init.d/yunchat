@@ -1,0 +1,13 @@
+#!/bin/sh /etc/rc.common
+
+START=99
+
+boot() {
+	node /root/yunchat/ &
+}
+start() { 
+	node /root/yunchat/ &
+	}
+stop() {
+	echo "yunchat stopped"
+	}

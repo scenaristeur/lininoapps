@@ -1,0 +1,13 @@
+#!/bin/sh /etc/rc.common
+
+START=99
+
+boot() {
+	node /root/sketchpad/ &
+}
+start() { 
+	node /root/sketchpad/ &
+	}
+stop() {
+	echo "sketchpad stopped"
+	}
