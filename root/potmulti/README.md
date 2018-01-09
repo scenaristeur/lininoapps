@@ -1,6 +1,25 @@
-Objectif : utiliser un potentiomètre pour agir sur une page Web : 
+Objectif : utiliser un potentiomètre pour agir sur une page Web :
 - matériel carte SmagYun avec Lininoio (http://smag0.blogspot.fr/2017/08/smagyun-comment-acceder-aux.html)
 - un potentiomètre : pin du milieu sur A0, 1 pin externe sur Gnd, l'autre sur 5V.
+
+
+# potmulti est un ['flappy bird ' en html / javascript] (https://www.w3schools.com/graphics/game_intro.asp)
++ ajout de la possibilité d'agir sur la vitesse du bird avec un potentiometre branché sur la pinA0 de la carte [SmagYun](http://smag0.blogspot.fr/2017/08/smagyun-une-arduino-yun-preparee-pour.html)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 Sur la carte créez un dossier pot2web, vous déplacer dedans, et lanceer 'npm init' pour initialiser l'application :
 ```
@@ -73,14 +92,14 @@ server.listen(port, function () {
 });
 
 ```
-créez un dossier 'public' et un fichier 'index.html' dans ce dossier public : 
+créez un dossier 'public' et un fichier 'index.html' dans ce dossier public :
 mkdir public && cd public && vi index.html
 
 ```
 <!DOCTYPE html>
 <html>
   <body>
-HELLO, 
+HELLO,
 consultez la console javascript en appuyant sur Ctrl+Maj+I
   <script src="/socket.io/socket.io.js"></script>
   <script>
@@ -95,8 +114,8 @@ si tout va bien vous devriez voir 'Server listening at port 3005 ', ceci indique
 En consultant la page web à l'adresse : http://<adresse_IP_de_votre_carte>:3005 (exemple : http://192.168.1.43:3005 )
 Vous devriez voir une page marquée 'HELLO, consultez la console javascript en appuyant sur Ctrl+Maj+I' , allez donc voir la console, celle-ci devrait vous afficher la Socket (https://socket.io/) qui nous permettra d'effectuer des communications bidirectionnelles entre la page web et le serveur.
 
-Installez ensuite node-ideino-linino-lib : 
-``` 
+Installez ensuite node-ideino-linino-lib :
+```
 opkg install node-ideino-linino-lib
 ```
 Et Modifier index.js
@@ -200,5 +219,3 @@ Telecharger P5js et inclure les les fichiers dans public/lib en respectant la st
 https://github.com/scenaristeur/lininoapps/tree/master/root/pot2web
 
 relancez l'appli avec 'node .' et vous devriez voir dans votre page Web un cercle s'animer lorsque vous changez la valeur du potentiomètre.
-
-
