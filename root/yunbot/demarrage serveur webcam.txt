@@ -1,0 +1,9 @@
+mjpg_streamer -i "/usr/lib/input_uvc.so -d /dev/video0  -y -r 320x240 -f 25" -o "/usr/lib/output_http.so -p 8090 -w /www/webcam -p 8090" &
+
+ou automatiser /Etc/
+
+option exposition, balance : https://wiki.openwrt.org/doc/howto/webcam
+
+
+source : https://learn.adafruit.com/wireless-security-camera-arduino-yun/stream-video-to-youtube
+http://smag0.blogspot.fr/2015/12/reinstallation-pcduino.html

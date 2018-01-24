@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0>
+		<style> body {padding: 0; margin: 0;} </style>
+		<script src="lib/p5.min.js"></script>
+		<!-- <script src="lib/addons/p5.dom.min.js"></script>
+		<script src="lib/addons/p5.sound.min.js"></script>-->
+		<script src="js/sketch.js"></script>
+        <style type="text/css">
+    		.rotate270 {
+			-webkit-transform: rotate(270deg);
+			-moz-transform: rotate(270deg);
+			-o-transform: rotate(270deg);
+			-ms-transform: rotate(270deg);
+			transform: rotate(270deg);
+			}
+		</style>
+		
+	</head>
+	<body>
+		
+		<div style="float:left">
+			<img id="snapshot" src="" class="rotate270"/>
+		</div>
+		<script>
+		var urlImg = "http://"+window.location.hostname+":8090/?action=stream";
+		 document.getElementById('snapshot').src=urlImg;
+		</script>
+		<script src="/socket.io/socket.io.js"></script>
+		<script>
+			var socket = io();
+			console.log(socket);
+			/*socket.on('update', function (data) {
+				console.log(data);
+			});*/
+			
+		</script>
+		
+	</body>
+</html>

@@ -1,0 +1,59 @@
+
+<html>
+	<head>
+		<meta name="viewport" width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0>
+		<script src="lib/p5.min.js"></script>
+		<!-- <script src="lib/addons/p5.dom.min.js"></script>
+		<script src="lib/addons/p5.sound.min.js"></script>-->
+		<script src="js/sketch.js"></script>
+		<style type="text/css">
+    		.rotate270 {
+			-webkit-transform: rotate(270deg);
+			-moz-transform: rotate(270deg);
+			-o-transform: rotate(270deg);
+			-ms-transform: rotate(270deg);
+			transform: rotate(270deg);
+			}
+		</style>
+		
+	</head>
+	
+	
+	
+	<body  ontouchmove="touchMove(event);">
+		
+		<center>
+			<div style="float:left">
+				<img id="snapshot" src="" class="rotate270"/>
+			</div>
+		</center>
+		
+		<script src="lib/virtualjoystick.js"></script>
+		<script>
+			console.log("touchscreen is", VirtualJoystick.touchScreenAvailable() ? "available" : "not available");
+			
+		</script>
+		
+		<script>
+			var defaultPrevent=function(e){e.preventDefault();}
+			var urlImg = "http://"+window.location.hostname+":8090/?action=stream";
+			document.getElementById('snapshot').src=urlImg;
+		</script>
+		<script src="/socket.io/socket.io.js"></script>
+		<script>
+			var socket = io();
+		</script>
+		<script>
+			function touchMove(event) {
+				event.preventDefault();
+				console.log(event);
+				/*curX = event.targetTouches[0].pageX - startX;
+					curY = event.targetTouches[0].pageY - startY;
+					event.targetTouches[0].target.style.webkitTransform =
+					'translate(' + curX + 'px, ' + curY + 'px)';
+				}*/
+			}
+			</script>
+			
+		</body>
+	</html>			

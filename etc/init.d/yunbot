@@ -1,0 +1,13 @@
+#!/bin/sh /etc/rc.common
+
+START=99
+
+boot() {
+	node /root/yunbot/ &
+}
+start() {
+	node /root/yunbot/ &
+	}
+stop() {
+	echo "yunbot stopped"
+	}

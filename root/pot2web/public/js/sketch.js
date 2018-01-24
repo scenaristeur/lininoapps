@@ -18,5 +18,5 @@ function draw() {
 	background(color);
 	noStroke();
 	fill(255-color);
-	ellipse(width/2,height/2,diametre,diametre);	
+	ellipse(width/2,height/2,diametre,diametre);
 }

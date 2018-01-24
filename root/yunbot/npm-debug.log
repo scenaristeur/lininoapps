@@ -1,0 +1,663 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/bin/npm', 'install', '--save', 'sleep' ]
+2 info using npm@1.3.24
+3 info using node@v0.10.25
+4 warn package.json yunbot@0.0.0 No description
+5 warn package.json yunbot@0.0.0 No repository field.
+6 warn package.json yunbot@0.0.0 No README data
+7 verbose readDependencies using package.json deps
+8 verbose cache add [ 'sleep', null ]
+9 verbose cache add name=undefined spec="sleep" args=["sleep",null]
+10 verbose parsed url { protocol: null,
+10 verbose parsed url   slashes: null,
+10 verbose parsed url   auth: null,
+10 verbose parsed url   host: null,
+10 verbose parsed url   port: null,
+10 verbose parsed url   hostname: null,
+10 verbose parsed url   hash: null,
+10 verbose parsed url   search: null,
+10 verbose parsed url   query: null,
+10 verbose parsed url   pathname: 'sleep',
+10 verbose parsed url   path: 'sleep',
+10 verbose parsed url   href: 'sleep' }
+11 silly lockFile c3ca5f78-sleep sleep
+12 verbose lock sleep /root/.npm/c3ca5f78-sleep.lock
+13 silly lockFile c3ca5f78-sleep sleep
+14 silly lockFile c3ca5f78-sleep sleep
+15 verbose addNamed [ 'sleep', '' ]
+16 verbose addNamed [ null, '*' ]
+17 silly lockFile e2b4ed60-sleep sleep@
+18 verbose lock sleep@ /root/.npm/e2b4ed60-sleep.lock
+19 silly addNameRange { name: 'sleep', range: '*', hasData: false }
+20 verbose url raw sleep
+21 verbose url resolving [ 'https://registry.npmjs.org/', './sleep' ]
+22 verbose url resolved https://registry.npmjs.org/sleep
+23 info trying registry request attempt 1 at 20:09:02
+24 http GET https://registry.npmjs.org/sleep
+25 http 200 https://registry.npmjs.org/sleep
+26 silly registry.get cb [ 200,
+26 silly registry.get   { 'content-type': 'application/json; charset=UTF-8',
+26 silly registry.get     server: 'UploadServer',
+26 silly registry.get     'cache-control': 'max-age=300',
+26 silly registry.get     'last-modified': 'Sat, 21 Oct 2017 12:42:39 GMT',
+26 silly registry.get     etag: '"59eb40bf-574c"',
+26 silly registry.get     'content-length': '22348',
+26 silly registry.get     'accept-ranges': 'bytes',
+26 silly registry.get     date: 'Wed, 10 Jan 2018 20:09:04 GMT',
+26 silly registry.get     via: '1.1 varnish',
+26 silly registry.get     age: '0',
+26 silly registry.get     connection: 'keep-alive',
+26 silly registry.get     'x-served-by': 'cache-cdg8723-CDG',
+26 silly registry.get     'x-cache': 'MISS',
+26 silly registry.get     'x-cache-hits': '0',
+26 silly registry.get     'x-timer': 'S1515614944.234857,VS0,VE243',
+26 silly registry.get     vary: 'Accept-Encoding, Accept' } ]
+27 silly addNameRange number 2 { name: 'sleep', range: '*', hasData: true }
+28 silly addNameRange versions [ 'sleep',
+28 silly addNameRange   [ '1.0.0',
+28 silly addNameRange     '1.0.1',
+28 silly addNameRange     '1.0.2',
+28 silly addNameRange     '1.1.0',
+28 silly addNameRange     '1.1.1',
+28 silly addNameRange     '1.1.2',
+28 silly addNameRange     '1.1.3',
+28 silly addNameRange     '1.1.4',
+28 silly addNameRange     '1.1.5',
+28 silly addNameRange     '1.1.6',
+28 silly addNameRange     '1.1.7',
+28 silly addNameRange     '1.1.8',
+28 silly addNameRange     '1.2.0',
+28 silly addNameRange     '2.0.0',
+28 silly addNameRange     '3.0.0',
+28 silly addNameRange     '3.0.1',
+28 silly addNameRange     '4.0.0',
+28 silly addNameRange     '5.0.0',
+28 silly addNameRange     '5.1.0',
+28 silly addNameRange     '5.1.1' ] ]
+29 verbose addNamed [ 'sleep', '5.1.1' ]
+30 verbose addNamed [ '5.1.1', '5.1.1' ]
+31 silly lockFile 1be8ffae-sleep-5-1-1 sleep@5.1.1
+32 verbose lock sleep@5.1.1 /root/.npm/1be8ffae-sleep-5-1-1.lock
+33 silly lockFile 3a45938b--npmjs-org-sleep-sleep-5-1-1-tgz https://registry.npmjs.org/sleep/-/sleep-5.1.1.tgz
+34 verbose lock https://registry.npmjs.org/sleep/-/sleep-5.1.1.tgz /root/.npm/3a45938b--npmjs-org-sleep-sleep-5-1-1-tgz.lock
+35 verbose addRemoteTarball [ 'https://registry.npmjs.org/sleep/-/sleep-5.1.1.tgz',
+35 verbose addRemoteTarball   '878fa1d44d08eeb0f26fb2018ef8629eb1a3ab94' ]
+36 info retry fetch attempt 1 at 20:09:05
+37 verbose fetch to= /root/tmp/npm-10553-36HrQWZT/1515614945061-0.14528194488957524/tmp.tgz
+38 http GET https://registry.npmjs.org/sleep/-/sleep-5.1.1.tgz
+39 http 200 https://registry.npmjs.org/sleep/-/sleep-5.1.1.tgz
+40 verbose tar unpack /root/tmp/npm-10553-36HrQWZT/1515614945061-0.14528194488957524/tmp.tgz
+41 silly lockFile bb7cdddf-5061-0-14528194488957524-package tar:///root/tmp/npm-10553-36HrQWZT/1515614945061-0.14528194488957524/package
+42 verbose lock tar:///root/tmp/npm-10553-36HrQWZT/1515614945061-0.14528194488957524/package /root/.npm/bb7cdddf-5061-0-14528194488957524-package.lock
+43 silly lockFile 7c26ebd1-5061-0-14528194488957524-tmp-tgz tar:///root/tmp/npm-10553-36HrQWZT/1515614945061-0.14528194488957524/tmp.tgz
+44 verbose lock tar:///root/tmp/npm-10553-36HrQWZT/1515614945061-0.14528194488957524/tmp.tgz /root/.npm/7c26ebd1-5061-0-14528194488957524-tmp-tgz.lock
+45 silly gunzTarPerm modes [ '755', '644' ]
+46 silly gunzTarPerm extractEntry package.json
+47 silly gunzTarPerm modified mode [ 'package.json', 436, 420 ]
+48 silly gunzTarPerm extractEntry .npmignore
+49 silly gunzTarPerm modified mode [ '.npmignore', 436, 420 ]
+50 silly gunzTarPerm extractEntry README.md
+51 silly gunzTarPerm modified mode [ 'README.md', 436, 420 ]
+52 silly gunzTarPerm extractEntry test.js
+53 silly gunzTarPerm modified mode [ 'test.js', 436, 420 ]
+54 silly gunzTarPerm extractEntry index.js
+55 silly gunzTarPerm modified mode [ 'index.js', 436, 420 ]
+56 silly gunzTarPerm extractEntry LICENSE.txt
+57 silly gunzTarPerm modified mode [ 'LICENSE.txt', 436, 420 ]
+58 silly gunzTarPerm extractEntry sleep.cc
+59 silly gunzTarPerm modified mode [ 'sleep.cc', 436, 420 ]
+60 silly gunzTarPerm extractEntry binding.gyp
+61 silly gunzTarPerm modified mode [ 'binding.gyp', 436, 420 ]
+62 silly lockFile bb7cdddf-5061-0-14528194488957524-package tar:///root/tmp/npm-10553-36HrQWZT/1515614945061-0.14528194488957524/package
+63 silly lockFile bb7cdddf-5061-0-14528194488957524-package tar:///root/tmp/npm-10553-36HrQWZT/1515614945061-0.14528194488957524/package
+64 silly lockFile 7c26ebd1-5061-0-14528194488957524-tmp-tgz tar:///root/tmp/npm-10553-36HrQWZT/1515614945061-0.14528194488957524/tmp.tgz
+65 silly lockFile 7c26ebd1-5061-0-14528194488957524-tmp-tgz tar:///root/tmp/npm-10553-36HrQWZT/1515614945061-0.14528194488957524/tmp.tgz
+66 verbose tar pack [ '/root/.npm/sleep/5.1.1/package.tgz',
+66 verbose tar pack   '/root/tmp/npm-10553-36HrQWZT/1515614945061-0.14528194488957524/package' ]
+67 verbose tarball /root/.npm/sleep/5.1.1/package.tgz
+68 verbose folder /root/tmp/npm-10553-36HrQWZT/1515614945061-0.14528194488957524/package
+69 silly lockFile bb7cdddf-5061-0-14528194488957524-package tar:///root/tmp/npm-10553-36HrQWZT/1515614945061-0.14528194488957524/package
+70 verbose lock tar:///root/tmp/npm-10553-36HrQWZT/1515614945061-0.14528194488957524/package /root/.npm/bb7cdddf-5061-0-14528194488957524-package.lock
+71 silly lockFile a8e1177b-root-npm-sleep-5-1-1-package-tgz tar:///root/.npm/sleep/5.1.1/package.tgz
+72 verbose lock tar:///root/.npm/sleep/5.1.1/package.tgz /root/.npm/a8e1177b-root-npm-sleep-5-1-1-package-tgz.lock
+73 silly lockFile bb7cdddf-5061-0-14528194488957524-package tar:///root/tmp/npm-10553-36HrQWZT/1515614945061-0.14528194488957524/package
+74 silly lockFile bb7cdddf-5061-0-14528194488957524-package tar:///root/tmp/npm-10553-36HrQWZT/1515614945061-0.14528194488957524/package
+75 silly lockFile a8e1177b-root-npm-sleep-5-1-1-package-tgz tar:///root/.npm/sleep/5.1.1/package.tgz
+76 silly lockFile a8e1177b-root-npm-sleep-5-1-1-package-tgz tar:///root/.npm/sleep/5.1.1/package.tgz
+77 silly lockFile 63d1bf8a-root-npm-sleep-5-1-1-package /root/.npm/sleep/5.1.1/package
+78 verbose lock /root/.npm/sleep/5.1.1/package /root/.npm/63d1bf8a-root-npm-sleep-5-1-1-package.lock
+79 silly lockFile 63d1bf8a-root-npm-sleep-5-1-1-package /root/.npm/sleep/5.1.1/package
+80 silly lockFile 63d1bf8a-root-npm-sleep-5-1-1-package /root/.npm/sleep/5.1.1/package
+81 verbose tar unpack /root/.npm/sleep/5.1.1/package.tgz
+82 silly lockFile 2bcd83d2-tar-root-npm-sleep-5-1-1-package tar:///root/.npm/sleep/5.1.1/package
+83 verbose lock tar:///root/.npm/sleep/5.1.1/package /root/.npm/2bcd83d2-tar-root-npm-sleep-5-1-1-package.lock
+84 silly lockFile a8e1177b-root-npm-sleep-5-1-1-package-tgz tar:///root/.npm/sleep/5.1.1/package.tgz
+85 verbose lock tar:///root/.npm/sleep/5.1.1/package.tgz /root/.npm/a8e1177b-root-npm-sleep-5-1-1-package-tgz.lock
+86 silly gunzTarPerm modes [ '755', '644' ]
+87 silly gunzTarPerm extractEntry package.json
+88 silly gunzTarPerm extractEntry .npmignore
+89 silly gunzTarPerm extractEntry README.md
+90 silly gunzTarPerm extractEntry index.js
+91 silly gunzTarPerm extractEntry test.js
+92 silly gunzTarPerm extractEntry LICENSE.txt
+93 silly gunzTarPerm extractEntry binding.gyp
+94 silly gunzTarPerm extractEntry sleep.cc
+95 silly lockFile 2bcd83d2-tar-root-npm-sleep-5-1-1-package tar:///root/.npm/sleep/5.1.1/package
+96 silly lockFile 2bcd83d2-tar-root-npm-sleep-5-1-1-package tar:///root/.npm/sleep/5.1.1/package
+97 silly lockFile a8e1177b-root-npm-sleep-5-1-1-package-tgz tar:///root/.npm/sleep/5.1.1/package.tgz
+98 silly lockFile a8e1177b-root-npm-sleep-5-1-1-package-tgz tar:///root/.npm/sleep/5.1.1/package.tgz
+99 verbose chmod /root/.npm/sleep/5.1.1/package.tgz 644
+100 verbose chown /root/.npm/sleep/5.1.1/package.tgz [ 0, 0 ]
+101 silly lockFile 3a45938b--npmjs-org-sleep-sleep-5-1-1-tgz https://registry.npmjs.org/sleep/-/sleep-5.1.1.tgz
+102 silly lockFile 3a45938b--npmjs-org-sleep-sleep-5-1-1-tgz https://registry.npmjs.org/sleep/-/sleep-5.1.1.tgz
+103 silly lockFile 1be8ffae-sleep-5-1-1 sleep@5.1.1
+104 silly lockFile 1be8ffae-sleep-5-1-1 sleep@5.1.1
+105 silly lockFile e2b4ed60-sleep sleep@
+106 silly lockFile e2b4ed60-sleep sleep@
+107 silly resolved [ { name: 'sleep',
+107 silly resolved     version: '5.1.1',
+107 silly resolved     main: 'index.js',
+107 silly resolved     description: 'Add sleep() and usleep() to nodejs',
+107 silly resolved     homepage: 'http://github.com/erikdubbelboer/node-sleep',
+107 silly resolved     author: { name: 'Erik Dubbelboer', email: 'erik@dubbelboer.com' },
+107 silly resolved     license: 'MIT',
+107 silly resolved     scripts: { test: 'mocha', install: 'node-gyp rebuild' },
+107 silly resolved     engines: { node: '>=0.8.0' },
+107 silly resolved     keywords: [ 'sleep', 'usleep' ],
+107 silly resolved     repository:
+107 silly resolved      { type: 'git',
+107 silly resolved        url: 'https://github.com/erikdubbelboer/node-sleep.git' },
+107 silly resolved     dependencies: { nan: '>=2.5.1' },
+107 silly resolved     devDependencies: { mocha: '^3.0.2' },
+107 silly resolved     gypfile: true,
+107 silly resolved     readme: 'sleep\n=====\n\nAdd [`sleep()`][1], `msleep()` and [`usleep()`][2] to Node.js, via a C++ binding.\n\nThis is mainly useful for debugging.\n\n**These calls will block execution of all JavaScript by halting Node.js\' event loop!**\n\nUsage\n-----\n\n    var sleep = require(\'sleep\');\n\n* `sleep.sleep(n)`: sleep for `n` seconds\n* `sleep.msleep(n)`: sleep for `n` miliseconds\n* `sleep.usleep(n)`: sleep for `n` microseconds (1 second is 1000000 microseconds)\n\n\n[1]: http://linux.die.net/man/3/sleep\n[2]: http://linux.die.net/man/3/usleep\n',
+107 silly resolved     readmeFilename: 'README.md',
+107 silly resolved     bugs: { url: 'https://github.com/erikdubbelboer/node-sleep/issues' },
+107 silly resolved     _id: 'sleep@5.1.1',
+107 silly resolved     dist: { shasum: 'f60140ffe7d71a8d19edf514e9821fb3591eea71' },
+107 silly resolved     _from: 'sleep@',
+107 silly resolved     _resolved: 'https://registry.npmjs.org/sleep/-/sleep-5.1.1.tgz' } ]
+108 info install sleep@5.1.1 into /root/yunbot
+109 info installOne sleep@5.1.1
+110 info /root/yunbot/node_modules/sleep unbuild
+111 verbose tar unpack /root/.npm/sleep/5.1.1/package.tgz
+112 silly lockFile 0bfe2056-r-root-yunbot-node-modules-sleep tar:///root/yunbot/node_modules/sleep
+113 verbose lock tar:///root/yunbot/node_modules/sleep /root/.npm/0bfe2056-r-root-yunbot-node-modules-sleep.lock
+114 silly lockFile a8e1177b-root-npm-sleep-5-1-1-package-tgz tar:///root/.npm/sleep/5.1.1/package.tgz
+115 verbose lock tar:///root/.npm/sleep/5.1.1/package.tgz /root/.npm/a8e1177b-root-npm-sleep-5-1-1-package-tgz.lock
+116 silly gunzTarPerm modes [ '755', '644' ]
+117 silly gunzTarPerm extractEntry package.json
+118 silly gunzTarPerm extractEntry .npmignore
+119 silly gunzTarPerm extractEntry README.md
+120 silly gunzTarPerm extractEntry index.js
+121 silly gunzTarPerm extractEntry test.js
+122 silly gunzTarPerm extractEntry LICENSE.txt
+123 silly gunzTarPerm extractEntry binding.gyp
+124 silly gunzTarPerm extractEntry sleep.cc
+125 silly lockFile 0bfe2056-r-root-yunbot-node-modules-sleep tar:///root/yunbot/node_modules/sleep
+126 silly lockFile 0bfe2056-r-root-yunbot-node-modules-sleep tar:///root/yunbot/node_modules/sleep
+127 silly lockFile a8e1177b-root-npm-sleep-5-1-1-package-tgz tar:///root/.npm/sleep/5.1.1/package.tgz
+128 silly lockFile a8e1177b-root-npm-sleep-5-1-1-package-tgz tar:///root/.npm/sleep/5.1.1/package.tgz
+129 info preinstall sleep@5.1.1
+130 verbose readDependencies using package.json deps
+131 verbose readDependencies using package.json deps
+132 verbose cache add [ 'nan@>=2.5.1', null ]
+133 verbose cache add name=undefined spec="nan@>=2.5.1" args=["nan@>=2.5.1",null]
+134 verbose parsed url { protocol: null,
+134 verbose parsed url   slashes: null,
+134 verbose parsed url   auth: null,
+134 verbose parsed url   host: null,
+134 verbose parsed url   port: null,
+134 verbose parsed url   hostname: null,
+134 verbose parsed url   hash: null,
+134 verbose parsed url   search: null,
+134 verbose parsed url   query: null,
+134 verbose parsed url   pathname: 'nan@%3E=2.5.1',
+134 verbose parsed url   path: 'nan@%3E=2.5.1',
+134 verbose parsed url   href: 'nan@%3E=2.5.1' }
+135 verbose cache add name="nan" spec=">=2.5.1" args=["nan",">=2.5.1"]
+136 verbose parsed url { protocol: null,
+136 verbose parsed url   slashes: null,
+136 verbose parsed url   auth: null,
+136 verbose parsed url   host: null,
+136 verbose parsed url   port: null,
+136 verbose parsed url   hostname: null,
+136 verbose parsed url   hash: null,
+136 verbose parsed url   search: null,
+136 verbose parsed url   query: null,
+136 verbose parsed url   pathname: '%3E=2.5.1',
+136 verbose parsed url   path: '%3E=2.5.1',
+136 verbose parsed url   href: '%3E=2.5.1' }
+137 verbose addNamed [ 'nan', '>=2.5.1' ]
+138 verbose addNamed [ null, '>=2.5.1' ]
+139 silly lockFile f7f70f75-nan-2-5-1 nan@>=2.5.1
+140 verbose lock nan@>=2.5.1 /root/.npm/f7f70f75-nan-2-5-1.lock
+141 silly addNameRange { name: 'nan', range: '>=2.5.1', hasData: false }
+142 verbose url raw nan
+143 verbose url resolving [ 'https://registry.npmjs.org/', './nan' ]
+144 verbose url resolved https://registry.npmjs.org/nan
+145 info trying registry request attempt 1 at 20:09:13
+146 verbose etag "59c33594-20237"
+147 http GET https://registry.npmjs.org/nan
+148 http 200 https://registry.npmjs.org/nan
+149 silly registry.get cb [ 200,
+149 silly registry.get   { 'content-type': 'application/json; charset=UTF-8',
+149 silly registry.get     server: 'UploadServer',
+149 silly registry.get     'cache-control': 'max-age=300',
+149 silly registry.get     'last-modified': 'Wed, 20 Dec 2017 21:36:49 GMT',
+149 silly registry.get     etag: '"5a3ad7f1-20c2f"',
+149 silly registry.get     'content-length': '134191',
+149 silly registry.get     'accept-ranges': 'bytes',
+149 silly registry.get     date: 'Wed, 10 Jan 2018 20:09:14 GMT',
+149 silly registry.get     via: '1.1 varnish',
+149 silly registry.get     age: '4349',
+149 silly registry.get     connection: 'keep-alive',
+149 silly registry.get     'x-served-by': 'cache-cdg8733-CDG',
+149 silly registry.get     'x-cache': 'HIT',
+149 silly registry.get     'x-cache-hits': '1',
+149 silly registry.get     'x-timer': 'S1515614954.174202,VS0,VE3',
+149 silly registry.get     vary: 'Accept-Encoding, Accept' } ]
+150 silly addNameRange number 2 { name: 'nan', range: '>=2.5.1', hasData: true }
+151 silly addNameRange versions [ 'nan',
+151 silly addNameRange   [ '0.3.0-wip',
+151 silly addNameRange     '0.3.0-wip2',
+151 silly addNameRange     '0.3.0',
+151 silly addNameRange     '0.3.1',
+151 silly addNameRange     '0.3.2',
+151 silly addNameRange     '0.4.0',
+151 silly addNameRange     '0.4.1',
+151 silly addNameRange     '0.4.2',
+151 silly addNameRange     '0.4.3',
+151 silly addNameRange     '0.4.4',
+151 silly addNameRange     '0.5.0',
+151 silly addNameRange     '0.5.1',
+151 silly addNameRange     '0.5.2',
+151 silly addNameRange     '0.6.0',
+151 silly addNameRange     '0.7.0',
+151 silly addNameRange     '0.7.1',
+151 silly addNameRange     '0.8.0',
+151 silly addNameRange     '1.0.0',
+151 silly addNameRange     '1.1.0',
+151 silly addNameRange     '1.1.1',
+151 silly addNameRange     '1.1.2',
+151 silly addNameRange     '1.2.0',
+151 silly addNameRange     '1.3.0',
+151 silly addNameRange     '1.4.0',
+151 silly addNameRange     '1.4.1',
+151 silly addNameRange     '1.5.0',
+151 silly addNameRange     '1.4.2',
+151 silly addNameRange     '1.4.3',
+151 silly addNameRange     '1.5.1',
+151 silly addNameRange     '1.5.2',
+151 silly addNameRange     '1.6.0',
+151 silly addNameRange     '1.5.3',
+151 silly addNameRange     '1.6.1',
+151 silly addNameRange     '1.6.2',
+151 silly addNameRange     '1.7.0',
+151 silly addNameRange     '1.8.0',
+151 silly addNameRange     '1.8.1',
+151 silly addNameRange     '1.8.2',
+151 silly addNameRange     '1.8.3',
+151 silly addNameRange     '1.8.4',
+151 silly addNameRange     '1.9.0',
+151 silly addNameRange     '2.0.0',
+151 silly addNameRange     '2.0.1',
+151 silly addNameRange     '2.0.2',
+151 silly addNameRange     '2.0.3',
+151 silly addNameRange     '2.0.4',
+151 silly addNameRange     '2.0.5',
+151 silly addNameRange     '2.0.6',
+151 silly addNameRange     '2.0.7',
+151 silly addNameRange     '2.0.8',
+151 silly addNameRange     '2.0.9',
+151 silly addNameRange     '2.1.0',
+151 silly addNameRange     '2.2.0',
+151 silly addNameRange     '2.2.1',
+151 silly addNameRange     '2.3.0',
+151 silly addNameRange     '2.3.1',
+151 silly addNameRange     '2.3.2',
+151 silly addNameRange     '2.3.3',
+151 silly addNameRange     '2.3.4',
+151 silly addNameRange     '2.3.5',
+151 silly addNameRange     '2.4.0',
+151 silly addNameRange     '2.5.0',
+151 silly addNameRange     '2.5.1',
+151 silly addNameRange     '2.6.0',
+151 silly addNameRange     '2.6.1',
+151 silly addNameRange     '2.6.2',
+151 silly addNameRange     '2.7.0',
+151 silly addNameRange     '2.8.0' ] ]
+152 verbose addNamed [ 'nan', '2.8.0' ]
+153 verbose addNamed [ '2.8.0', '2.8.0' ]
+154 silly lockFile 54110fda-nan-2-8-0 nan@2.8.0
+155 verbose lock nan@2.8.0 /root/.npm/54110fda-nan-2-8-0.lock
+156 silly lockFile 278a10e3-stry-npmjs-org-nan-nan-2-8-0-tgz https://registry.npmjs.org/nan/-/nan-2.8.0.tgz
+157 verbose lock https://registry.npmjs.org/nan/-/nan-2.8.0.tgz /root/.npm/278a10e3-stry-npmjs-org-nan-nan-2-8-0-tgz.lock
+158 verbose addRemoteTarball [ 'https://registry.npmjs.org/nan/-/nan-2.8.0.tgz',
+158 verbose addRemoteTarball   'ed715f3fe9de02b57a5e6252d90a96675e1f085a' ]
+159 info retry fetch attempt 1 at 20:09:16
+160 verbose fetch to= /root/tmp/npm-10553-36HrQWZT/1515614956215-0.6816799715161324/tmp.tgz
+161 http GET https://registry.npmjs.org/nan/-/nan-2.8.0.tgz
+162 http 200 https://registry.npmjs.org/nan/-/nan-2.8.0.tgz
+163 verbose tar unpack /root/tmp/npm-10553-36HrQWZT/1515614956215-0.6816799715161324/tmp.tgz
+164 silly lockFile 3fdf8ffb-56215-0-6816799715161324-package tar:///root/tmp/npm-10553-36HrQWZT/1515614956215-0.6816799715161324/package
+165 verbose lock tar:///root/tmp/npm-10553-36HrQWZT/1515614956215-0.6816799715161324/package /root/.npm/3fdf8ffb-56215-0-6816799715161324-package.lock
+166 silly lockFile c25378c3-56215-0-6816799715161324-tmp-tgz tar:///root/tmp/npm-10553-36HrQWZT/1515614956215-0.6816799715161324/tmp.tgz
+167 verbose lock tar:///root/tmp/npm-10553-36HrQWZT/1515614956215-0.6816799715161324/tmp.tgz /root/.npm/c25378c3-56215-0-6816799715161324-tmp-tgz.lock
+168 silly gunzTarPerm modes [ '755', '644' ]
+169 silly gunzTarPerm extractEntry package.json
+170 silly gunzTarPerm modified mode [ 'package.json', 436, 420 ]
+171 silly gunzTarPerm extractEntry README.md
+172 silly gunzTarPerm modified mode [ 'README.md', 436, 420 ]
+173 silly gunzTarPerm extractEntry include_dirs.js
+174 silly gunzTarPerm modified mode [ 'include_dirs.js', 436, 420 ]
+175 silly gunzTarPerm extractEntry nan_converters_43_inl.h
+176 silly gunzTarPerm modified mode [ 'nan_converters_43_inl.h', 436, 420 ]
+177 silly gunzTarPerm extractEntry LICENSE.md
+178 silly gunzTarPerm modified mode [ 'LICENSE.md', 436, 420 ]
+179 silly gunzTarPerm extractEntry doc/new.md
+180 silly gunzTarPerm modified mode [ 'doc/new.md', 436, 420 ]
+181 silly gunzTarPerm extractEntry doc/asyncworker.md
+182 silly gunzTarPerm modified mode [ 'doc/asyncworker.md', 436, 420 ]
+183 silly gunzTarPerm extractEntry doc/callback.md
+184 silly gunzTarPerm modified mode [ 'doc/callback.md', 436, 420 ]
+185 silly gunzTarPerm extractEntry doc/converters.md
+186 silly gunzTarPerm modified mode [ 'doc/converters.md', 436, 420 ]
+187 silly gunzTarPerm extractEntry doc/errors.md
+188 silly gunzTarPerm modified mode [ 'doc/errors.md', 436, 420 ]
+189 silly gunzTarPerm extractEntry doc/json.md
+190 silly gunzTarPerm modified mode [ 'doc/json.md', 436, 420 ]
+191 silly gunzTarPerm extractEntry doc/maybe_types.md
+192 silly gunzTarPerm modified mode [ 'doc/maybe_types.md', 436, 420 ]
+193 silly gunzTarPerm extractEntry doc/methods.md
+194 silly gunzTarPerm modified mode [ 'doc/methods.md', 436, 420 ]
+195 silly gunzTarPerm extractEntry doc/buffers.md
+196 silly gunzTarPerm modified mode [ 'doc/buffers.md', 436, 420 ]
+197 silly gunzTarPerm extractEntry doc/node_misc.md
+198 silly gunzTarPerm modified mode [ 'doc/node_misc.md', 436, 420 ]
+199 silly gunzTarPerm extractEntry doc/object_wrappers.md
+200 silly gunzTarPerm modified mode [ 'doc/object_wrappers.md', 436, 420 ]
+201 silly gunzTarPerm extractEntry doc/persistent.md
+202 silly gunzTarPerm modified mode [ 'doc/persistent.md', 436, 420 ]
+203 silly gunzTarPerm extractEntry doc/scopes.md
+204 silly gunzTarPerm modified mode [ 'doc/scopes.md', 436, 420 ]
+205 silly gunzTarPerm extractEntry doc/script.md
+206 silly gunzTarPerm modified mode [ 'doc/script.md', 436, 420 ]
+207 silly gunzTarPerm extractEntry doc/string_bytes.md
+208 silly gunzTarPerm modified mode [ 'doc/string_bytes.md', 436, 420 ]
+209 silly gunzTarPerm extractEntry doc/v8_internals.md
+210 silly gunzTarPerm modified mode [ 'doc/v8_internals.md', 436, 420 ]
+211 silly gunzTarPerm extractEntry doc/v8_misc.md
+212 silly gunzTarPerm modified mode [ 'doc/v8_misc.md', 436, 420 ]
+213 silly gunzTarPerm extractEntry nan.h
+214 silly gunzTarPerm modified mode [ 'nan.h', 436, 420 ]
+215 silly gunzTarPerm extractEntry nan_callbacks.h
+216 silly gunzTarPerm modified mode [ 'nan_callbacks.h', 436, 420 ]
+217 silly gunzTarPerm extractEntry nan_callbacks_12_inl.h
+218 silly gunzTarPerm modified mode [ 'nan_callbacks_12_inl.h', 436, 420 ]
+219 silly gunzTarPerm extractEntry nan_callbacks_pre_12_inl.h
+220 silly gunzTarPerm modified mode [ 'nan_callbacks_pre_12_inl.h', 436, 420 ]
+221 silly gunzTarPerm extractEntry nan_converters.h
+222 silly gunzTarPerm modified mode [ 'nan_converters.h', 436, 420 ]
+223 silly gunzTarPerm extractEntry nan_converters_pre_43_inl.h
+224 silly gunzTarPerm modified mode [ 'nan_converters_pre_43_inl.h', 436, 420 ]
+225 silly gunzTarPerm extractEntry nan_implementation_12_inl.h
+226 silly gunzTarPerm modified mode [ 'nan_implementation_12_inl.h', 436, 420 ]
+227 silly gunzTarPerm extractEntry nan_implementation_pre_12_inl.h
+228 silly gunzTarPerm modified mode [ 'nan_implementation_pre_12_inl.h', 436, 420 ]
+229 silly gunzTarPerm extractEntry nan_json.h
+230 silly gunzTarPerm modified mode [ 'nan_json.h', 436, 420 ]
+231 silly gunzTarPerm extractEntry nan_maybe_43_inl.h
+232 silly gunzTarPerm modified mode [ 'nan_maybe_43_inl.h', 436, 420 ]
+233 silly gunzTarPerm extractEntry nan_maybe_pre_43_inl.h
+234 silly gunzTarPerm modified mode [ 'nan_maybe_pre_43_inl.h', 436, 420 ]
+235 silly gunzTarPerm extractEntry nan_new.h
+236 silly gunzTarPerm modified mode [ 'nan_new.h', 436, 420 ]
+237 silly gunzTarPerm extractEntry nan_object_wrap.h
+238 silly gunzTarPerm modified mode [ 'nan_object_wrap.h', 436, 420 ]
+239 silly gunzTarPerm extractEntry nan_persistent_12_inl.h
+240 silly gunzTarPerm modified mode [ 'nan_persistent_12_inl.h', 436, 420 ]
+241 silly gunzTarPerm extractEntry nan_persistent_pre_12_inl.h
+242 silly gunzTarPerm modified mode [ 'nan_persistent_pre_12_inl.h', 436, 420 ]
+243 silly gunzTarPerm extractEntry nan_private.h
+244 silly gunzTarPerm modified mode [ 'nan_private.h', 436, 420 ]
+245 silly gunzTarPerm extractEntry nan_string_bytes.h
+246 silly gunzTarPerm modified mode [ 'nan_string_bytes.h', 436, 420 ]
+247 silly gunzTarPerm extractEntry nan_typedarray_contents.h
+248 silly gunzTarPerm modified mode [ 'nan_typedarray_contents.h', 436, 420 ]
+249 silly gunzTarPerm extractEntry nan_weak.h
+250 silly gunzTarPerm modified mode [ 'nan_weak.h', 436, 420 ]
+251 silly gunzTarPerm extractEntry CHANGELOG.md
+252 silly gunzTarPerm modified mode [ 'CHANGELOG.md', 436, 420 ]
+253 silly gunzTarPerm extractEntry tools/package.json
+254 silly gunzTarPerm modified mode [ 'tools/package.json', 436, 420 ]
+255 silly gunzTarPerm extractEntry tools/README.md
+256 silly gunzTarPerm modified mode [ 'tools/README.md', 436, 420 ]
+257 silly gunzTarPerm extractEntry tools/1to2.js
+258 silly gunzTarPerm modified mode [ 'tools/1to2.js', 509, 493 ]
+259 silly lockFile 3fdf8ffb-56215-0-6816799715161324-package tar:///root/tmp/npm-10553-36HrQWZT/1515614956215-0.6816799715161324/package
+260 silly lockFile 3fdf8ffb-56215-0-6816799715161324-package tar:///root/tmp/npm-10553-36HrQWZT/1515614956215-0.6816799715161324/package
+261 silly lockFile c25378c3-56215-0-6816799715161324-tmp-tgz tar:///root/tmp/npm-10553-36HrQWZT/1515614956215-0.6816799715161324/tmp.tgz
+262 silly lockFile c25378c3-56215-0-6816799715161324-tmp-tgz tar:///root/tmp/npm-10553-36HrQWZT/1515614956215-0.6816799715161324/tmp.tgz
+263 verbose tar pack [ '/root/.npm/nan/2.8.0/package.tgz',
+263 verbose tar pack   '/root/tmp/npm-10553-36HrQWZT/1515614956215-0.6816799715161324/package' ]
+264 verbose tarball /root/.npm/nan/2.8.0/package.tgz
+265 verbose folder /root/tmp/npm-10553-36HrQWZT/1515614956215-0.6816799715161324/package
+266 silly lockFile 3fdf8ffb-56215-0-6816799715161324-package tar:///root/tmp/npm-10553-36HrQWZT/1515614956215-0.6816799715161324/package
+267 verbose lock tar:///root/tmp/npm-10553-36HrQWZT/1515614956215-0.6816799715161324/package /root/.npm/3fdf8ffb-56215-0-6816799715161324-package.lock
+268 silly lockFile 77421fb8-r-root-npm-nan-2-8-0-package-tgz tar:///root/.npm/nan/2.8.0/package.tgz
+269 verbose lock tar:///root/.npm/nan/2.8.0/package.tgz /root/.npm/77421fb8-r-root-npm-nan-2-8-0-package-tgz.lock
+270 silly lockFile 3fdf8ffb-56215-0-6816799715161324-package tar:///root/tmp/npm-10553-36HrQWZT/1515614956215-0.6816799715161324/package
+271 silly lockFile 3fdf8ffb-56215-0-6816799715161324-package tar:///root/tmp/npm-10553-36HrQWZT/1515614956215-0.6816799715161324/package
+272 silly lockFile 77421fb8-r-root-npm-nan-2-8-0-package-tgz tar:///root/.npm/nan/2.8.0/package.tgz
+273 silly lockFile 77421fb8-r-root-npm-nan-2-8-0-package-tgz tar:///root/.npm/nan/2.8.0/package.tgz
+274 silly lockFile 47a9ffe0-root-npm-nan-2-8-0-package /root/.npm/nan/2.8.0/package
+275 verbose lock /root/.npm/nan/2.8.0/package /root/.npm/47a9ffe0-root-npm-nan-2-8-0-package.lock
+276 silly lockFile 47a9ffe0-root-npm-nan-2-8-0-package /root/.npm/nan/2.8.0/package
+277 silly lockFile 47a9ffe0-root-npm-nan-2-8-0-package /root/.npm/nan/2.8.0/package
+278 verbose tar unpack /root/.npm/nan/2.8.0/package.tgz
+279 silly lockFile 2abeb812-tar-root-npm-nan-2-8-0-package tar:///root/.npm/nan/2.8.0/package
+280 verbose lock tar:///root/.npm/nan/2.8.0/package /root/.npm/2abeb812-tar-root-npm-nan-2-8-0-package.lock
+281 silly lockFile 77421fb8-r-root-npm-nan-2-8-0-package-tgz tar:///root/.npm/nan/2.8.0/package.tgz
+282 verbose lock tar:///root/.npm/nan/2.8.0/package.tgz /root/.npm/77421fb8-r-root-npm-nan-2-8-0-package-tgz.lock
+283 silly gunzTarPerm modes [ '755', '644' ]
+284 silly gunzTarPerm extractEntry package.json
+285 silly gunzTarPerm extractEntry README.md
+286 silly gunzTarPerm extractEntry include_dirs.js
+287 silly gunzTarPerm extractEntry nan_implementation_pre_12_inl.h
+288 silly gunzTarPerm extractEntry CHANGELOG.md
+289 silly gunzTarPerm extractEntry nan.h
+290 silly gunzTarPerm extractEntry nan_callbacks.h
+291 silly gunzTarPerm extractEntry nan_callbacks_12_inl.h
+292 silly gunzTarPerm extractEntry nan_callbacks_pre_12_inl.h
+293 silly gunzTarPerm extractEntry nan_converters.h
+294 silly gunzTarPerm extractEntry nan_converters_43_inl.h
+295 silly gunzTarPerm extractEntry nan_converters_pre_43_inl.h
+296 silly gunzTarPerm extractEntry nan_implementation_12_inl.h
+297 silly gunzTarPerm extractEntry LICENSE.md
+298 silly gunzTarPerm extractEntry nan_json.h
+299 silly gunzTarPerm extractEntry nan_maybe_43_inl.h
+300 silly gunzTarPerm extractEntry nan_maybe_pre_43_inl.h
+301 silly gunzTarPerm extractEntry nan_new.h
+302 silly gunzTarPerm extractEntry nan_object_wrap.h
+303 silly gunzTarPerm extractEntry nan_persistent_12_inl.h
+304 silly gunzTarPerm extractEntry nan_persistent_pre_12_inl.h
+305 silly gunzTarPerm extractEntry nan_private.h
+306 silly gunzTarPerm extractEntry nan_string_bytes.h
+307 silly gunzTarPerm extractEntry nan_typedarray_contents.h
+308 silly gunzTarPerm extractEntry nan_weak.h
+309 silly gunzTarPerm extractEntry doc/new.md
+310 silly gunzTarPerm extractEntry doc/asyncworker.md
+311 silly gunzTarPerm extractEntry doc/callback.md
+312 silly gunzTarPerm extractEntry doc/converters.md
+313 silly gunzTarPerm extractEntry doc/errors.md
+314 silly gunzTarPerm extractEntry doc/json.md
+315 silly gunzTarPerm extractEntry doc/maybe_types.md
+316 silly gunzTarPerm extractEntry doc/methods.md
+317 silly gunzTarPerm extractEntry doc/buffers.md
+318 silly gunzTarPerm extractEntry doc/node_misc.md
+319 silly gunzTarPerm extractEntry doc/object_wrappers.md
+320 silly gunzTarPerm extractEntry doc/persistent.md
+321 silly gunzTarPerm extractEntry doc/scopes.md
+322 silly gunzTarPerm extractEntry doc/script.md
+323 silly gunzTarPerm extractEntry doc/string_bytes.md
+324 silly gunzTarPerm extractEntry doc/v8_internals.md
+325 silly gunzTarPerm extractEntry doc/v8_misc.md
+326 silly gunzTarPerm extractEntry tools/package.json
+327 silly gunzTarPerm extractEntry tools/README.md
+328 silly gunzTarPerm extractEntry tools/1to2.js
+329 silly lockFile 2abeb812-tar-root-npm-nan-2-8-0-package tar:///root/.npm/nan/2.8.0/package
+330 silly lockFile 2abeb812-tar-root-npm-nan-2-8-0-package tar:///root/.npm/nan/2.8.0/package
+331 silly lockFile 77421fb8-r-root-npm-nan-2-8-0-package-tgz tar:///root/.npm/nan/2.8.0/package.tgz
+332 silly lockFile 77421fb8-r-root-npm-nan-2-8-0-package-tgz tar:///root/.npm/nan/2.8.0/package.tgz
+333 verbose chmod /root/.npm/nan/2.8.0/package.tgz 644
+334 verbose chown /root/.npm/nan/2.8.0/package.tgz [ 0, 0 ]
+335 silly lockFile 278a10e3-stry-npmjs-org-nan-nan-2-8-0-tgz https://registry.npmjs.org/nan/-/nan-2.8.0.tgz
+336 silly lockFile 278a10e3-stry-npmjs-org-nan-nan-2-8-0-tgz https://registry.npmjs.org/nan/-/nan-2.8.0.tgz
+337 silly lockFile 54110fda-nan-2-8-0 nan@2.8.0
+338 silly lockFile 54110fda-nan-2-8-0 nan@2.8.0
+339 silly lockFile f7f70f75-nan-2-5-1 nan@>=2.5.1
+340 silly lockFile f7f70f75-nan-2-5-1 nan@>=2.5.1
+341 silly resolved [ { name: 'nan',
+341 silly resolved     version: '2.8.0',
+341 silly resolved     description: 'Native Abstractions for Node.js: C++ header for Node 0.8 -> 9 compatibility',
+341 silly resolved     main: 'include_dirs.js',
+341 silly resolved     repository: { type: 'git', url: 'git://github.com/nodejs/nan.git' },
+341 silly resolved     scripts:
+341 silly resolved      { test: 'tap --gc --stderr test/js/*-test.js',
+341 silly resolved        'rebuild-tests': 'node-gyp rebuild --msvs_version=2015 --directory test',
+341 silly resolved        docs: 'doc/.build.sh' },
+341 silly resolved     contributors:
+341 silly resolved      [ [Object],
+341 silly resolved        [Object],
+341 silly resolved        [Object],
+341 silly resolved        [Object],
+341 silly resolved        [Object],
+341 silly resolved        [Object],
+341 silly resolved        [Object],
+341 silly resolved        [Object] ],
+341 silly resolved     devDependencies:
+341 silly resolved      { bindings: '~1.2.1',
+341 silly resolved        commander: '^2.8.1',
+341 silly resolved        glob: '^5.0.14',
+341 silly resolved        request: '=2.81.0',
+341 silly resolved        'node-gyp': '~3.6.2',
+341 silly resolved        'readable-stream': '^2.1.4',
+341 silly resolved        tap: '~0.7.1',
+341 silly resolved        xtend: '~4.0.0' },
+341 silly resolved     license: 'MIT',
+341 silly resolved     readme: 'Native Abstractions for Node.js\n===============================\n\n**A header file filled with macro and utility goodness for making add-on development for Node.js easier across versions 0.8, 0.10, 0.12, 1, 2, 3, 4, 5, 6, 7, 8 and 9.**\n\n***Current version: 2.8.0***\n\n*(See [CHANGELOG.md](https://github.com/nodejs/nan/blob/master/CHANGELOG.md) for complete ChangeLog)*\n\n[![NPM](https://nodei.co/npm/nan.png?downloads=true&downloadRank=true)](https://nodei.co/npm/nan/) [![NPM](https://nodei.co/npm-dl/nan.png?months=6&height=3)](https://nodei.co/npm/nan/)\n\n[![Build Status](https://api.travis-ci.org/nodejs/nan.svg?branch=master)](http://travis-ci.org/nodejs/nan)\n[![Build status](https://ci.appveyor.com/api/projects/status/kh73pbm9dsju7fgh)](https://ci.appveyor.com/project/RodVagg/nan)\n\nThanks to the crazy changes in V8 (and some in Node core), keeping native addons compiling happily across versions, particularly 0.10 to 0.12 to 4.0, is a minor nightmare. The goal of this project is to store all logic necessary to develop native Node.js addons without having to inspect `NODE_MODULE_VERSION` and get yourself into a macro-tangle.\n\nThis project also contains some helper utilities that make addon development a bit more pleasant.\n\n * **[News & Updates](#news)**\n * **[Usage](#usage)**\n * **[Example](#example)**\n * **[API](#api)**\n * **[Tests](#tests)**\n * **[Governance & Contributing](#governance)**\n\n<a name="news"></a>\n\n## News & Updates\n\n<a name="usage"></a>\n\n## Usage\n\nSimply add **NAN** as a dependency in the *package.json* of your Node addon:\n\n``` bash\n$ npm install --save nan\n```\n\nPull in the path to **NAN** in your *binding.gyp* so that you can use `#include <nan.h>` in your *.cpp* files:\n\n``` python\n"include_dirs" : [\n    "<!(node -e \\"require(\'nan\')\\")"\n]\n```\n\nThis works like a `-I<path-to-NAN>` when compiling your addon.\n\n<a name="example"></a>\n\n## Example\n\nJust getting started with Nan? Take a look at the **[Node Add-on Examples](https://github.com/nodejs/node-addon-examples)**.\n\nRefer to a [quick-start **Nan** Boilerplate](https://github.com/fcanas/node-native-boilerplate) for a ready-to-go project that utilizes basic Nan functionality.\n\nFor a simpler example, see the **[async pi estimation example](https://github.com/nodejs/nan/tree/master/examples/async_pi_estimate)** in the examples directory for full code and an explanation of what this Monte Carlo Pi estimation example does. Below are just some parts of the full example that illustrate the use of **NAN**.\n\nYet another example is **[nan-example-eol](https://github.com/CodeCharmLtd/nan-example-eol)**. It shows newline detection implemented as a native addon.\n\nAlso take a look at our comprehensive **[C++ test suite](https://github.com/nodejs/nan/tree/master/test/cpp)** which has a plethora of code snippets for your pasting pleasure.\n\n<a name="api"></a>\n\n## API\n\nAdditional to the NAN documentation below, please consult:\n\n* [The V8 Getting Started * Guide](https://github.com/v8/v8/wiki/Getting%20Started%20with%20Embedding)\n* [The V8 Embedders * Guide](https://github.com/v8/v8/wiki/Embedder%27s%20Guide)\n* [V8 API Documentation](http://v8docs.nodesource.com/)\n* [Node Add-on Documentation](https://nodejs.org/api/addons.html)\n\n<!-- START API -->\n\n### JavaScript-accessible methods\n\nA _template_ is a blueprint for JavaScript functions and objects in a context. You can use a template to wrap C++ functions and data structures within JavaScript objects so that they can be manipulated from JavaScript. See the V8 Embedders Guide section on [Templates](https://github.com/v8/v8/wiki/Embedder%27s-Guide#templates) for further information.\n\nIn order to expose functionality to JavaScript via a template, you must provide it to V8 in a form that it understands. Across the versions of V8 supported by NAN, JavaScript-accessible method signatures vary widely, NAN fully abstracts method declaration and provides you with an interface that is similar to the most recent V8 API but is backward-compatible with older versions that still use the now-deceased `v8::Argument` type.\n\n* **Method argument types**\n - <a href="doc/methods.md#api_nan_function_callback_info"><b><code>Nan::FunctionCallbackInfo</code></b></a>\n - <a href="doc/methods.md#api_nan_property_callback_info"><b><code>Nan::PropertyCallbackInfo</code></b></a>\n - <a href="doc/methods.md#api_nan_return_value"><b><code>Nan::ReturnValue</code></b></a>\n* **Method declarations**\n - <a href="doc/methods.md#api_nan_method"><b>Method declaration</b></a>\n - <a href="doc/methods.md#api_nan_getter"><b>Getter declaration</b></a>\n - <a href="doc/methods.md#api_nan_setter"><b>Setter declaration</b></a>\n - <a href="doc/methods.md#api_nan_property_getter"><b>Property getter declaration</b></a>\n - <a href="doc/methods.md#api_nan_property_setter"><b>Property setter declaration</b></a>\n - <a href="doc/methods.md#api_nan_property_enumerator"><b>Property enumerator declaration</b></a>\n - <a href="doc/methods.md#api_nan_property_deleter"><b>Property deleter declaration</b></a>\n - <a href="doc/methods.md#api_nan_property_query"><b>Property query declaration</b></a>\n - <a href="doc/methods.md#api_nan_index_getter"><b>Index getter declaration</b></a>\n - <a href="doc/methods.md#api_nan_index_setter"><b>Index setter declaration</b></a>\n - <a href="doc/methods.md#api_nan_index_enumerator"><b>Index enumerator declaration</b></a>\n - <a href="doc/methods.md#api_nan_index_deleter"><b>Index deleter declaration</b></a>\n - <a href="doc/methods.md#api_nan_index_query"><b>Index query declaration</b></a>\n* Method and template helpers\n - <a href="doc/methods.md#api_nan_set_method"><b><code>Nan::SetMethod()</code></b></a>\n - <a href="doc/methods.md#api_nan_set_prototype_method"><b><code>Nan::SetPrototypeMethod()</code></b></a>\n - <a href="doc/methods.md#api_nan_set_accessor"><b><code>Nan::SetAccessor()</code></b></a>\n - <a href="doc/methods.md#api_nan_set_named_property_handler"><b><code>Nan::SetNamedPropertyHandler()</code></b></a>\n - <a href="doc/methods.md#api_nan_set_indexed_property_handler"><b><code>Nan::SetIndexedPropertyHandler()</code></b></a>\n - <a href="doc/methods.md#api_nan_set_template"><b><code>Nan::SetTemplate()</code></b></a>\n - <a href="doc/methods.md#api_nan_set_prototype_template"><b><code>Nan::SetPrototypeTemplate()</code></b></a>\n - <a href="doc/methods.md#api_nan_set_instance_template"><b><code>Nan::SetInstanceTemplate()</code></b></a>\n - <a href="doc/methods.md#api_nan_set_call_handler"><b><code>Nan::SetCallHandler()</code></b></a>\n - <a href="doc/methods.md#api_nan_set_call_as_function_handler"><b><code>Nan::SetCallAsFunctionHandler()</code></b></a>\n\n### Scopes\n\nA _local handle_ is a pointer to an object. All V8 objects are accessed using handles, they are necessary because of the way the V8 garbage collector works.\n\nA handle scope can be thought of as a container for any number of handles. When you\'ve finished with your handles, instead of deleting each one individually you can simply delete their scope.\n\nThe creation of `HandleScope` objects is different across the supported versions of V8. Therefore, NAN provides its own implementations that can be used safely across these.\n\n - <a href="doc/scopes.md#api_nan_handle_scope"><b><code>Nan::HandleScope</code></b></a>\n - <a href="doc/scopes.md#api_nan_escapable_handle_scope"><b><code>Nan::EscapableHandleScope</code></b></a>\n\nAlso see the V8 Embedders Guide section on [Handles and Garbage Collection](https://github.com/v8/v8/wiki/Embedder%27s%20Guide#handles-and-garbage-collection).\n\n### Persistent references\n\nAn object reference that is independent of any `HandleScope` is a _persistent_ reference. Where a `Local` handle only lives as long as the `HandleScope` in which it was allocated, a `Persistent` handle remains valid until it is explicitly disposed.\n\nDue to the evolution of the V8 API, it is necessary for NAN to provide a wrapper implementation of the `Persistent` classes to supply compatibility across the V8 versions supported.\n\n - <a href="doc/persistent.md#api_nan_persistent_base"><b><code>Nan::PersistentBase & v8::PersistentBase</code></b></a>\n - <a href="doc/persistent.md#api_nan_non_copyable_persistent_traits"><b><code>Nan::NonCopyablePersistentTraits & v8::NonCopyablePersistentTraits</code></b></a>\n - <a href="doc/persistent.md#api_nan_copyable_persistent_traits"><b><code>Nan::CopyablePersistentTraits & v8::CopyablePersistentTraits</code></b></a>\n - <a href="doc/persistent.md#api_nan_persistent"><b><code>Nan::Persistent</code></b></a>\n - <a href="doc/persistent.md#api_nan_global"><b><code>Nan::Global</code></b></a>\n - <a href="doc/persistent.md#api_nan_weak_callback_info"><b><code>Nan::WeakCallbackInfo</code></b></a>\n - <a href="doc/persistent.md#api_nan_weak_callback_type"><b><code>Nan::WeakCallbackType</code></b></a>\n\nAlso see the V8 Embedders Guide section on [Handles and Garbage Collection](https://developers.google.com/v8/embed#handles).\n\n### New\n\nNAN provides a `Nan::New()` helper for the creation of new JavaScript objects in a way that\'s compatible across the supported versions of V8.\n\n - <a href="doc/new.md#api_nan_new"><b><code>Nan::New()</code></b></a>\n - <a href="doc/new.md#api_nan_undefined"><b><code>Nan::Undefined()</code></b></a>\n - <a href="doc/new.md#api_nan_null"><b><code>Nan::Null()</code></b></a>\n - <a href="doc/new.md#api_nan_true"><b><code>Nan::True()</code></b></a>\n - <a href="doc/new.md#api_nan_false"><b><code>Nan::False()</code></b></a>\n - <a href="doc/new.md#api_nan_empty_string"><b><code>Nan::EmptyString()</code></b></a>\n\n\n### Converters\n\nNAN contains functions that convert `v8::Value`s to other `v8::Value` types and native types. Since type conversion is not guaranteed to succeed, they return `Nan::Maybe` types. These converters can be used in place of `value->ToX()` and `value->XValue()` (where `X` is one of the types, e.g. `Boolean`) in a way that provides a consistent interface across V8 versions. Newer versions of V8 use the new `v8::Maybe` and `v8::MaybeLocal` types for these conversions, older versions don\'t have this functionality so it is provided by NAN.\n\n - <a href="doc/converters.md#api_nan_to"><b><code>Nan::To()</code></b></a>\n\n### Maybe Types\n\nThe `Nan::MaybeLocal` and `Nan::Maybe` types are monads that encapsulate `v8::Local` handles that _may be empty_.\n\n* **Maybe Types**\n  - <a href="doc/maybe_types.md#api_nan_maybe_local"><b><code>Nan::MaybeLocal</code></b></a>\n  - <a href="doc/maybe_types.md#api_nan_maybe"><b><code>Nan::Maybe</code></b></a>\n  - <a href="doc/maybe_types.md#api_nan_nothing"><b><code>Nan::Nothing</code></b></a>\n  - <a href="doc/maybe_types.md#api_nan_just"><b><code>Nan::Just</code></b></a>\n* **Maybe Helpers**\n  - <a href="doc/maybe_types.md#api_nan_call"><b><code>Nan::Call()</code></b></a>\n  - <a href="doc/maybe_types.md#api_nan_to_detail_string"><b><code>Nan::ToDetailString()</code></b></a>\n  - <a href="doc/maybe_types.md#api_nan_to_array_index"><b><code>Nan::ToArrayIndex()</code></b></a>\n  - <a href="doc/maybe_types.md#api_nan_equals"><b><code>Nan::Equals()</code></b></a>\n  - <a href="doc/maybe_types.md#api_nan_new_instance"><b><code>Nan::NewInstance()</code></b></a>\n  - <a href="doc/maybe_types.md#api_nan_get_function"><b><code>Nan::GetFunction()</code></b></a>\n  - <a href="doc/maybe_types.md#api_nan_set"><b><code>Nan::Set()</code></b></a>\n  - <a href="doc/maybe_types.md#api_nan_define_own_property"><b><code>Nan::DefineOwnProperty()</code></b></a>\n  - <a href="doc/maybe_types.md#api_nan_force_set"><del><b><code>Nan::ForceSet()</code></b></del></a>\n  - <a href="doc/maybe_types.md#api_nan_get"><b><code>Nan::Get()</code></b></a>\n  - <a href="doc/maybe_types.md#api_nan_get_property_attribute"><b><code>Nan::GetPropertyAttributes()</code></b></a>\n  - <a href="doc/maybe_types.md#api_nan_has"><b><code>Nan::Has()</code></b></a>\n  - <a href="doc/maybe_types.md#api_nan_delete"><b><code>Nan::Delete()</code></b></a>\n  - <a href="doc/maybe_types.md#api_nan_get_property_names"><b><code>Nan::GetPropertyNames()</code></b></a>\n  - <a href="doc/maybe_types.md#api_nan_get_own_property_names"><b><code>Nan::GetOwnPropertyNames()</code></b></a>\n  - <a href="doc/maybe_types.md#api_nan_set_prototype"><b><code>Nan::SetPrototype()</code></b></a>\n  - <a href="doc/maybe_types.md#api_nan_object_proto_to_string"><b><code>Nan::ObjectProtoToString()</code></b></a>\n  - <a href="doc/maybe_types.md#api_nan_has_own_property"><b><code>Nan::HasOwnProperty()</code></b></a>\n  - <a href="doc/maybe_types.md#api_nan_has_real_named_property"><b><code>Nan::HasRealNamedProperty()</code></b></a>\n  - <a href="doc/maybe_types.md#api_nan_has_real_indexed_property"><b><code>Nan::HasRealIndexedProperty()</code></b></a>\n  - <a href="doc/maybe_types.md#api_nan_has_real_named_callback_property"><b><code>Nan::HasRealNamedCallbackProperty()</code></b></a>\n  - <a href="doc/maybe_types.md#api_nan_get_real_named_property_in_prototype_chain"><b><code>Nan::GetRealNamedPropertyInPrototypeChain()</code></b></a>\n  - <a href="doc/maybe_types.md#api_nan_get_real_named_property"><b><code>Nan::GetRealNamedProperty()</code></b></a>\n  - <a href="doc/maybe_types.md#api_nan_call_as_function"><b><code>Nan::CallAsFunction()</code></b></a>\n  - <a href="doc/maybe_types.md#api_nan_call_as_constructor"><b><code>Nan::CallAsConstructor()</code></b></a>\n  - <a href="doc/maybe_types.md#api_nan_get_source_line"><b><code>Nan::GetSourceLine()</code></b></a>\n  - <a href="doc/maybe_types.md#api_nan_get_line_number"><b><code>Nan::GetLineNumber()</code></b></a>\n  - <a href="doc/maybe_types.md#api_nan_get_start_column"><b><code>Nan::GetStartColumn()</code></b></a>\n  - <a href="doc/maybe_types.md#api_nan_get_end_column"><b><code>Nan::GetEndColumn()</code></b></a>\n  - <a href="doc/maybe_types.md#api_nan_clone_element_at"><b><code>Nan::CloneElementAt()</code></b></a>\n  - <a href="doc/maybe_types.md#api_nan_has_private"><b><code>Nan::HasPrivate()</code></b></a>\n  - <a href="doc/maybe_types.md#api_nan_get_private"><b><code>Nan::GetPrivate()</code></b></a>\n  - <a href="doc/maybe_types.md#api_nan_set_private"><b><code>Nan::SetPrivate()</code></b></a>\n  - <a href="doc/maybe_types.md#api_nan_delete_private"><b><code>Nan::DeletePrivate()</code></b></a>\n  - <a href="doc/maybe_types.md#api_nan_make_maybe"><b><code>Nan::MakeMaybe()</code></b></a>\n\n### Script\n\nNAN provides a `v8::Script` helpers as the API has changed over the supported versions of V8.\n\n - <a href="doc/script.md#api_nan_compile_script"><b><code>Nan::CompileScript()</code></b></a>\n - <a href="doc/script.md#api_nan_run_script"><b><code>Nan::RunScript()</code></b></a>\n\n\n### JSON\n\nThe _JSON_ object provides the c++ versions of the methods offered by the `JSON` object in javascript. V8 exposes these methods via the `v8::JSON` object.\n\n - <a href="doc/json.md#api_nan_json_parse"><b><code>Nan::JSON.Parse</code></b></a>\n - <a href="doc/json.md#api_nan_json_stringify"><b><code>Nan::JSON.Stringify</code></b></a>\n\nRefer to the V8 JSON object in the [V8 documentation](https://v8docs.nodesource.com/node-7.4/da/d6f/classv8_1_1_j_s_o_n.html) for more information about these methods and their arguments.\n\n### Errors\n\nNAN includes helpers for creating, throwing and catching Errors as much of this functionality varies across the supported versions of V8 and must be abstracted.\n\nNote that an Error object is simply a specialized form of `v8::Value`.\n\nAlso consult the V8 Embedders Guide section on [Exceptions](https://developers.google.com/v8/embed#exceptions) for more information.\n\n - <a href="doc/errors.md#api_nan_error"><b><code>Nan::Error()</code></b></a>\n - <a href="doc/errors.md#api_nan_range_error"><b><code>Nan::RangeError()</code></b></a>\n - <a href="doc/errors.md#api_nan_reference_error"><b><code>Nan::ReferenceError()</code></b></a>\n - <a href="doc/errors.md#api_nan_syntax_error"><b><code>Nan::SyntaxError()</code></b></a>\n - <a href="doc/errors.md#api_nan_type_error"><b><code>Nan::TypeError()</code></b></a>\n - <a href="doc/errors.md#api_nan_throw_error"><b><code>Nan::ThrowError()</code></b></a>\n - <a href="doc/errors.md#api_nan_throw_range_error"><b><code>Nan::ThrowRangeError()</code></b></a>\n - <a href="doc/errors.md#api_nan_throw_reference_error"><b><code>Nan::ThrowReferenceError()</code></b></a>\n - <a href="doc/errors.md#api_nan_throw_syntax_error"><b><code>Nan::ThrowSyntaxError()</code></b></a>\n - <a href="doc/errors.md#api_nan_throw_type_error"><b><code>Nan::ThrowTypeError()</code></b></a>\n - <a href="doc/errors.md#api_nan_fatal_exception"><b><code>Nan::FatalException()</code></b></a>\n - <a href="doc/errors.md#api_nan_errno_exception"><b><code>Nan::ErrnoException()</code></b></a>\n - <a href="doc/errors.md#api_nan_try_catch"><b><code>Nan::TryCatch</code></b></a>\n\n\n### Buffers\n\nNAN\'s `node::Buffer` helpers exist as the API has changed across supported Node versions. Use these methods to ensure compatibility.\n\n - <a href="doc/buffers.md#api_nan_new_buffer"><b><code>Nan::NewBuffer()</code></b></a>\n - <a href="doc/buffers.md#api_nan_copy_buffer"><b><code>Nan::CopyBuffer()</code></b></a>\n - <a href="doc/buffers.md#api_nan_free_callback"><b><code>Nan::FreeCallback()</code></b></a>\n\n### Nan::Callback\n\n`Nan::Callback` makes it easier to use `v8::Function` handles as callbacks. A class that wraps a `v8::Function` handle, protecting it from garbage collection and making it particularly useful for storage and use across asynchronous execution.\n\n - <a href="doc/callback.md#api_nan_callback"><b><code>Nan::Callback</code></b></a>\n\n### Asynchronous work helpers\n\n`Nan::AsyncWorker`, `Nan::AsyncProgressWorker` and `Nan::AsyncProgressQueueWorker` are helper classes that make working with asynchronous code easier.\n\n - <a href="doc/asyncworker.md#api_nan_async_worker"><b><code>Nan::AsyncWorker</code></b></a>\n - <a href="doc/asyncworker.md#api_nan_async_progress_worker"><b><code>Nan::AsyncProgressWorkerBase &amp; Nan::AsyncProgressWorker</code></b></a>\n - <a href="doc/asyncworker.md#api_nan_async_progress_queue_worker"><b><code>Nan::AsyncProgressQueueWorker</code></b></a>\n - <a href="doc/asyncworker.md#api_nan_async_queue_worker"><b><code>Nan::AsyncQueueWorker</code></b></a>\n\n### Strings & Bytes\n\nMiscellaneous string & byte encoding and decoding functionality provided for compatibility across supported versions of V8 and Node. Implemented by NAN to ensure that all encoding types are supported, even for older versions of Node where they are missing.\n\n - <a href="doc/string_bytes.md#api_nan_encoding"><b><code>Nan::Encoding</code></b></a>\n - <a href="doc/string_bytes.md#api_nan_encode"><b><code>Nan::Encode()</code></b></a>\n - <a href="doc/string_bytes.md#api_nan_decode_bytes"><b><code>Nan::DecodeBytes()</code></b></a>\n - <a href="doc/string_bytes.md#api_nan_decode_write"><b><code>Nan::DecodeWrite()</code></b></a>\n\n\n### Object Wrappers\n\nThe `ObjectWrap` class can be used to make wrapped C++ objects and a factory of wrapped objects.\n\n - <a href="doc/object_wrappers.md#api_nan_object_wrap"><b><code>Nan::ObjectWrap</code></b></a>\n\n\n### V8 internals\n\nThe hooks to access V8 internals—including GC and statistics—are different across the supported versions of V8, therefore NAN provides its own hooks that call the appropriate V8 methods.\n\n - <a href="doc/v8_internals.md#api_nan_gc_callback"><b><code>NAN_GC_CALLBACK()</code></b></a>\n - <a href="doc/v8_internals.md#api_nan_add_gc_epilogue_callback"><b><code>Nan::AddGCEpilogueCallback()</code></b></a>\n - <a href="doc/v8_internals.md#api_nan_remove_gc_epilogue_callback"><b><code>Nan::RemoveGCEpilogueCallback()</code></b></a>\n - <a href="doc/v8_internals.md#api_nan_add_gc_prologue_callback"><b><code>Nan::AddGCPrologueCallback()</code></b></a>\n - <a href="doc/v8_internals.md#api_nan_remove_gc_prologue_callback"><b><code>Nan::RemoveGCPrologueCallback()</code></b></a>\n - <a href="doc/v8_internals.md#api_nan_get_heap_statistics"><b><code>Nan::GetHeapStatistics()</code></b></a>\n - <a href="doc/v8_internals.md#api_nan_set_counter_function"><b><code>Nan::SetCounterFunction()</code></b></a>\n - <a href="doc/v8_internals.md#api_nan_set_create_histogram_function"><b><code>Nan::SetCreateHistogramFunction()</code></b></a>\n - <a href="doc/v8_internals.md#api_nan_set_add_histogram_sample_function"><b><code>Nan::SetAddHistogramSampleFunction()</code></b></a>\n - <a href="doc/v8_internals.md#api_nan_idle_notification"><b><code>Nan::IdleNotification()</code></b></a>\n - <a href="doc/v8_internals.md#api_nan_low_memory_notification"><b><code>Nan::LowMemoryNotification()</code></b></a>\n - <a href="doc/v8_internals.md#api_nan_context_disposed_notification"><b><code>Nan::ContextDisposedNotification()</code></b></a>\n - <a href="doc/v8_internals.md#api_nan_get_internal_field_pointer"><b><code>Nan::GetInternalFieldPointer()</code></b></a>\n - <a href="doc/v8_internals.md#api_nan_set_internal_field_pointer"><b><code>Nan::SetInternalFieldPointer()</code></b></a>\n - <a href="doc/v8_internals.md#api_nan_adjust_external_memory"><b><code>Nan::AdjustExternalMemory()</code></b></a>\n\n\n### Miscellaneous V8 Helpers\n\n - <a href="doc/v8_misc.md#api_nan_utf8_string"><b><code>Nan::Utf8String</code></b></a>\n - <a href="doc/v8_misc.md#api_nan_get_current_context"><b><code>Nan::GetCurrentContext()</code></b></a>\n - <a href="doc/v8_misc.md#api_nan_set_isolate_data"><b><code>Nan::SetIsolateData()</code></b></a>\n - <a href="doc/v8_misc.md#api_nan_get_isolate_data"><b><code>Nan::GetIsolateData()</code></b></a>\n - <a href="doc/v8_misc.md#api_nan_typedarray_contents"><b><code>Nan::TypedArrayContents</code></b></a>\n\n\n### Miscellaneous Node Helpers\n\n - <a href="doc/node_misc.md#api_nan_make_callback"><b><code>Nan::MakeCallback()</code></b></a>\n - <a href="doc/node_misc.md#api_nan_module_init"><b><code>NAN_MODULE_INIT()</code></b></a>\n - <a href="doc/node_misc.md#api_nan_export"><b><code>Nan::Export()</code></b></a>\n\n<!-- END API -->\n\n\n<a name="tests"></a>\n\n### Tests\n\nTo run the NAN tests do:\n\n``` sh\nnpm install\nnpm run-script rebuild-tests\nnpm test\n```\n\nOr just:\n\n``` sh\nnpm install\nmake test\n```\n\n<a name="governance"></a>\n\n## Governance & Contributing\n\nNAN is governed by the [Node.js Addon API Working Group](https://github.com/nodejs/CTC/blob/master/WORKING_GROUPS.md#addon-api)\n\n### Addon API Working Group (WG)\n\nThe NAN project is jointly governed by a Working Group which is responsible for high-level guidance of the project.\n\nMembers of the WG are also known as Collaborators, there is no distinction between the two, unlike other Node.js projects.\n\nThe WG has final authority over this project including:\n\n* Technical direction\n* Project governance and process (including this policy)\n* Contribution policy\n* GitHub repository hosting\n* Maintaining the list of additional Collaborators\n\nFor the current list of WG members, see the project [README.md](./README.md#collaborators).\n\nIndividuals making significant and valuable contributions are made members of the WG and given commit-access to the project. These individuals are identified by the WG and their addition to the WG is discussed via GitHub and requires unanimous consensus amongst those WG members participating in the discussion with a quorum of 50% of WG members required for acceptance of the vote.\n\n_Note:_ If you make a significant contribution and are not considered for commit-access log an issue or contact a WG member directly.\n\nFor the current list of WG members / Collaborators, see the project [README.md](./README.md#collaborators).\n\n### Consensus Seeking Process\n\nThe WG follows a [Consensus Seeking](http://en.wikipedia.org/wiki/Consensus-seeking_decision-making) decision making model.\n\nModifications of the contents of the NAN repository are made on a collaborative basis. Anybody with a GitHub account may propose a modification via pull request and it will be considered by the WG. All pull requests must be reviewed and accepted by a WG member with sufficient expertise who is able to take full responsibility for the change. In the case of pull requests proposed by an existing WG member, an additional WG member is required for sign-off. Consensus should be sought if additional WG members participate and there is disagreement around a particular modification.\n\nIf a change proposal cannot reach a consensus, a WG member can call for a vote amongst the members of the WG. Simple majority wins.\n\n<a id="developers-certificate-of-origin"></a>\n\n## Developer\'s Certificate of Origin 1.1\n\nBy making a contribution to this project, I certify that:\n\n* (a) The contribution was created in whole or in part by me and I\n  have the right to submit it under the open source license\n  indicated in the file; or\n\n* (b) The contribution is based upon previous work that, to the best\n  of my knowledge, is covered under an appropriate open source\n  license and I have the right under that license to submit that\n  work with modifications, whether created in whole or in part\n  by me, under the same open source license (unless I am\n  permitted to submit under a different license), as indicated\n  in the file; or\n\n* (c) The contribution was provided directly to me by some other\n  person who certified (a), (b) or (c) and I have not modified\n  it.\n\n* (d) I understand and agree that this project and the contribution\n  are public and that a record of the contribution (including all\n  personal information I submit with it, including my sign-off) is\n  maintained indefinitely and may be redistributed consistent with\n  this project or the open source license(s) involved.\n\n<a name="collaborators"></a>\n\n### WG Members / Collaborators\n\n<table><tbody>\n<tr><th align="left">Rod Vagg</th><td><a href="https://github.com/rvagg">GitHub/rvagg</a></td><td><a href="http://twitter.com/rvagg">Twitter/@rvagg</a></td></tr>\n<tr><th align="left">Benjamin Byholm</th><td><a href="https://github.com/kkoopa/">GitHub/kkoopa</a></td><td>-</td></tr>\n<tr><th align="left">Trevor Norris</th><td><a href="https://github.com/trevnorris">GitHub/trevnorris</a></td><td><a href="http://twitter.com/trevnorris">Twitter/@trevnorris</a></td></tr>\n<tr><th align="left">Nathan Rajlich</th><td><a href="https://github.com/TooTallNate">GitHub/TooTallNate</a></td><td><a href="http://twitter.com/TooTallNate">Twitter/@TooTallNate</a></td></tr>\n<tr><th align="left">Brett Lawson</th><td><a href="https://github.com/brett19">GitHub/brett19</a></td><td><a href="http://twitter.com/brett19x">Twitter/@brett19x</a></td></tr>\n<tr><th align="left">Ben Noordhuis</th><td><a href="https://github.com/bnoordhuis">GitHub/bnoordhuis</a></td><td><a href="http://twitter.com/bnoordhuis">Twitter/@bnoordhuis</a></td></tr>\n<tr><th align="left">David Siegel</th><td><a href="https://github.com/agnat">GitHub/agnat</a></td><td><a href="http://twitter.com/agnat">Twitter/@agnat</a></td></tr>\n<tr><th align="left">Michael Ira Krufky</th><td><a href="https://github.com/mkrufky">GitHub/mkrufky</a></td><td><a href="http://twitter.com/mkrufky">Twitter/@mkrufky</a></td></tr>\n</tbody></table>\n\n## Licence &amp; copyright\n\nCopyright (c) 2017 NAN WG Members / Collaborators (listed above).\n\nNative Abstractions for Node.js is licensed under an MIT license. All rights not explicitly granted in the MIT license are reserved. See the included LICENSE file for more details.\n',
+341 silly resolved     readmeFilename: 'README.md',
+341 silly resolved     bugs: { url: 'https://github.com/nodejs/nan/issues' },
+341 silly resolved     homepage: 'https://github.com/nodejs/nan',
+341 silly resolved     _id: 'nan@2.8.0',
+341 silly resolved     dist: { shasum: 'd4df8d6c8f072c300c2318facba474077c05d4f8' },
+341 silly resolved     _from: 'nan@>=2.5.1',
+341 silly resolved     _resolved: 'https://registry.npmjs.org/nan/-/nan-2.8.0.tgz' } ]
+342 info install nan@2.8.0 into /root/yunbot/node_modules/sleep
+343 info installOne nan@2.8.0
+344 info /root/yunbot/node_modules/sleep/node_modules/nan unbuild
+345 verbose tar unpack /root/.npm/nan/2.8.0/package.tgz
+346 silly lockFile 1a5b5552-e-modules-sleep-node-modules-nan tar:///root/yunbot/node_modules/sleep/node_modules/nan
+347 verbose lock tar:///root/yunbot/node_modules/sleep/node_modules/nan /root/.npm/1a5b5552-e-modules-sleep-node-modules-nan.lock
+348 silly lockFile 77421fb8-r-root-npm-nan-2-8-0-package-tgz tar:///root/.npm/nan/2.8.0/package.tgz
+349 verbose lock tar:///root/.npm/nan/2.8.0/package.tgz /root/.npm/77421fb8-r-root-npm-nan-2-8-0-package-tgz.lock
+350 silly gunzTarPerm modes [ '755', '644' ]
+351 silly gunzTarPerm extractEntry package.json
+352 silly gunzTarPerm extractEntry README.md
+353 silly gunzTarPerm extractEntry include_dirs.js
+354 silly gunzTarPerm extractEntry nan_implementation_pre_12_inl.h
+355 silly gunzTarPerm extractEntry CHANGELOG.md
+356 silly gunzTarPerm extractEntry nan.h
+357 silly gunzTarPerm extractEntry nan_callbacks.h
+358 silly gunzTarPerm extractEntry nan_callbacks_12_inl.h
+359 silly gunzTarPerm extractEntry nan_callbacks_pre_12_inl.h
+360 silly gunzTarPerm extractEntry nan_converters.h
+361 silly gunzTarPerm extractEntry nan_converters_43_inl.h
+362 silly gunzTarPerm extractEntry nan_converters_pre_43_inl.h
+363 silly gunzTarPerm extractEntry nan_implementation_12_inl.h
+364 silly gunzTarPerm extractEntry LICENSE.md
+365 silly gunzTarPerm extractEntry nan_json.h
+366 silly gunzTarPerm extractEntry nan_maybe_43_inl.h
+367 silly gunzTarPerm extractEntry nan_maybe_pre_43_inl.h
+368 silly gunzTarPerm extractEntry nan_new.h
+369 silly gunzTarPerm extractEntry nan_object_wrap.h
+370 silly gunzTarPerm extractEntry nan_persistent_12_inl.h
+371 silly gunzTarPerm extractEntry nan_persistent_pre_12_inl.h
+372 silly gunzTarPerm extractEntry nan_private.h
+373 silly gunzTarPerm extractEntry nan_string_bytes.h
+374 silly gunzTarPerm extractEntry nan_typedarray_contents.h
+375 silly gunzTarPerm extractEntry nan_weak.h
+376 silly gunzTarPerm extractEntry doc/new.md
+377 silly gunzTarPerm extractEntry doc/asyncworker.md
+378 silly gunzTarPerm extractEntry doc/callback.md
+379 silly gunzTarPerm extractEntry doc/converters.md
+380 silly gunzTarPerm extractEntry doc/errors.md
+381 silly gunzTarPerm extractEntry doc/json.md
+382 silly gunzTarPerm extractEntry doc/maybe_types.md
+383 silly gunzTarPerm extractEntry doc/methods.md
+384 silly gunzTarPerm extractEntry doc/buffers.md
+385 silly gunzTarPerm extractEntry doc/node_misc.md
+386 silly gunzTarPerm extractEntry doc/object_wrappers.md
+387 silly gunzTarPerm extractEntry doc/persistent.md
+388 silly gunzTarPerm extractEntry doc/scopes.md
+389 silly gunzTarPerm extractEntry doc/script.md
+390 silly gunzTarPerm extractEntry doc/string_bytes.md
+391 silly gunzTarPerm extractEntry doc/v8_internals.md
+392 silly gunzTarPerm extractEntry doc/v8_misc.md
+393 silly gunzTarPerm extractEntry tools/package.json
+394 silly gunzTarPerm extractEntry tools/README.md
+395 silly gunzTarPerm extractEntry tools/1to2.js
+396 silly lockFile 1a5b5552-e-modules-sleep-node-modules-nan tar:///root/yunbot/node_modules/sleep/node_modules/nan
+397 silly lockFile 1a5b5552-e-modules-sleep-node-modules-nan tar:///root/yunbot/node_modules/sleep/node_modules/nan
+398 silly lockFile 77421fb8-r-root-npm-nan-2-8-0-package-tgz tar:///root/.npm/nan/2.8.0/package.tgz
+399 silly lockFile 77421fb8-r-root-npm-nan-2-8-0-package-tgz tar:///root/.npm/nan/2.8.0/package.tgz
+400 info preinstall nan@2.8.0
+401 verbose readDependencies using package.json deps
+402 verbose readDependencies using package.json deps
+403 silly resolved []
+404 verbose about to build /root/yunbot/node_modules/sleep/node_modules/nan
+405 info build /root/yunbot/node_modules/sleep/node_modules/nan
+406 verbose linkStuff [ false,
+406 verbose linkStuff   false,
+406 verbose linkStuff   false,
+406 verbose linkStuff   '/root/yunbot/node_modules/sleep/node_modules' ]
+407 info linkStuff nan@2.8.0
+408 verbose linkBins nan@2.8.0
+409 verbose linkMans nan@2.8.0
+410 verbose rebuildBundles nan@2.8.0
+411 info install nan@2.8.0
+412 info postinstall nan@2.8.0
+413 verbose about to build /root/yunbot/node_modules/sleep
+414 info build /root/yunbot/node_modules/sleep
+415 verbose linkStuff [ false, false, false, '/root/yunbot/node_modules' ]
+416 info linkStuff sleep@5.1.1
+417 verbose linkBins sleep@5.1.1
+418 verbose linkMans sleep@5.1.1
+419 verbose rebuildBundles sleep@5.1.1
+420 verbose rebuildBundles [ 'nan' ]
+421 info install sleep@5.1.1
+422 verbose unsafe-perm in lifecycle false
+423 info sleep@5.1.1 Failed to exec install script
+424 info /root/yunbot/node_modules/sleep unbuild
+425 info preuninstall sleep@5.1.1
+426 info uninstall sleep@5.1.1
+427 verbose true,/root/yunbot/node_modules,/root/yunbot/node_modules unbuild sleep@5.1.1
+428 info postuninstall sleep@5.1.1
+429 error sleep@5.1.1 install: `node-gyp rebuild`
+429 error Exit status 1
+430 error Failed at the sleep@5.1.1 install script.
+430 error This is most likely a problem with the sleep package,
+430 error not with npm itself.
+430 error Tell the author that this fails on your system:
+430 error     node-gyp rebuild
+430 error You can get their info via:
+430 error     npm owner ls sleep
+430 error There is likely additional logging output above.
+431 error System Linux 3.3.8
+432 error command "node" "/usr/bin/npm" "install" "--save" "sleep"
+433 error cwd /root/yunbot
+434 error node -v v0.10.25
+435 error npm -v 1.3.24
+436 error code ELIFECYCLE
+437 verbose exit [ 1, true ]
