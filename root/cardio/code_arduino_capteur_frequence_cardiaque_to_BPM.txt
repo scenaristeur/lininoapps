@@ -1,0 +1,176 @@
+// Pulse Monitor Test Script
+unsigned long now, t, lastPic, beep, beepAff; // start,
+unsigned long bpm, bpmlast, bpmbefore , bpmnow;
+float seuil = 0.4; // seuil réglé par potard sur A1
+int tempo = 300; //   60000/120 =500 // divisé par car deux changements par battement : un pic haut, un pic bas
+
+int ledPin = 13;
+
+int sensorPin = 0;
+int potPin = 1;
+int pot = 0;
+
+double alpha = 0.75;
+
+int period = 20;
+int sign, oldSign;
+
+
+long p;
+
+static double oldValue = 0;
+static double oldChange = 0;
+double change = 0.0;
+
+void setup()
+
+{
+
+  pinMode(ledPin, OUTPUT);
+
+  Serial.begin(115200);
+  lastPic = millis();
+
+}
+
+void loop()
+
+{
+  // affichage de la valeur du potentiometre pour régler seuil ou tempo
+  pot = map(analogRead(potPin), 0, 1023, 0, 102.3);
+
+  //affichage de la valeur mesurée sur A0 (-900 pour que ça entre dans le graphe)
+  int rawValue = analogRead(sensorPin) - 900 ;
+  Serial.print(rawValue * 5);
+
+
+  //affichage de la valeur mesurée lissée
+  double value = alpha * oldValue + (1 - alpha) * rawValue;
+  Serial.print(",");
+  Serial.print(value * 5);
+
+
+  //affichage de la valeur du changement pour déterminer les pics : si le changement est positif ou negatif par rapport à la valeur précédente (*10 pour voir sur le graphe
+  change = oldValue - value;
+  Serial.print(",");
+  Serial.print(change * 10);
+  /*
+    Serial.print(",");
+    Serial.print(pot);*/
+
+  //affichage du signe pour déterminer si on continue ou si on change (monte / descend)
+  // Les êtres humains dépassent rarement les 120 battements cardiaques par minutes, donc on ne prend en compte les changement trop rapides, inférieurs à tempo
+
+  now = millis();
+  t = now - lastPic;
+  /*if (t > 500) {
+    t = 500; // limite  pour coherence de graphe
+    }*/
+  if ((abs(change) == change)  && (abs(change) > seuil) && (t > tempo)) {
+    // if ((abs(change) == change) && (abs(change) > seuil) && (t > tempo)) { // && (abs(change) > seuil) && (t > tempo) )
+    sign = 1;
+    lastPic = now;
+
+
+  }
+  else
+  {
+    sign = -1;
+
+  }
+
+  if ( sign == 1 ) {
+    // bpm = int(60000 / t -100); // div par 20 pour aff
+    bpmnow = 60000 / t; // div par 2 pour une période ???? a vérifier ?? pour des résultats cohérents ?
+    //lissage du bpm
+
+    bpm = (bpmnow + bpmlast + bpmbefore) / 3 ; //moyenne
+    bpmbefore = bpmlast;
+    bpmlast = bpmnow;
+  }
+
+
+  Serial.print(",");
+  Serial.print(sign * 10);
+
+  Serial.print(",");
+  Serial.print(t / 20);
+
+  Serial.print(",");
+  Serial.print(bpm / 2);
+
+  /* bpm = int(60000 / beep/10); //div par 10 pour aff
+    Serial.print(",");
+    Serial.print(bpm);*/
+
+
+
+
+  // determination des pics : oldValue - value permet de savoir si on augmente par rapport à la dernière valeur
+  // seuil permet de définir une limite minimum de changement : si le changement est inférieur à seuil, on ne le prend pas en compte
+  // on limite encore les interférence pour ne prendre que les changement qui interviennent avec un minimum de 'tempo' millisecondes
+  //si la valeur absolue de change
+  /*
+    if ((abs(change) == change) && (abs(change) > seuil) && (t > tempo)) {
+      // if (abs(change) == change)  {
+      sign = 1;
+    }
+    else
+    {
+      sign = -1;
+    }*/
+
+
+  /*
+
+      bpm = (bpmlast + bpmbefore + (60000 / t)) / 3; // moyenne sur trois bpm
+      bpmbefore = bpmlast;
+      bpmlast = bpm;
+      // Serial.print(bpm);
+      // Serial.print(",");
+      // Serial.print(sign);
+      //Serial.print(",");
+      last = millis();
+      now = millis();
+      long t = now - start;
+      p = t * 2;
+      long bpmTemp = 60000 / p;
+
+      if ((bpmTemp < 230) || (bpm > 40)) {
+        bpm = bpmTemp;
+
+      }
+      start = now;
+  */
+
+
+
+  // Serial.print(p / 1000 );
+  // Serial.print(",");
+  // Serial.print(bpm );
+  //  Serial.print(",");
+
+
+
+  /*if (sign == -oldSign) {
+
+
+
+    //  Serial1.println(value);
+
+
+    }*/
+  //Serial.print(change + 1000);
+  //Serial.print(",");
+  //Serial.println(sign + 1000);
+  // now = millis()%1000;
+  // Serial.print(now);
+  //Serial.print(",");
+  Serial.println();
+  oldSign = sign;
+  oldValue = value;
+  oldChange = change;
+
+  delay(period);
+
+}

@@ -8,6 +8,18 @@ var play = false;
 var song ;
 var ROAR_90, GETLUCKY_116, COME_100, WALK_105, CARMEN_150, CRUEL_168;
 var slider;
+var slider2;
+
+// variables pour la mesure 
+var alpha;
+var period;
+var change ;
+var oldValue;
+var oldChange;
+var start;
+var mesures = [];
+var seuil = 0;
+
 
 function preload() {
 	// soundFormats('mp3', 'ogg');
@@ -25,8 +37,18 @@ function setup() {
 	canvas = createCanvas(windowWidth, windowHeight);
 	slider = createSlider(40, 220, 70);
 	slider.position(10, 10);
-	
 	slider.style('width', width/2+'px');
+	
+	slider2 = createSlider(0, 1023, 0);
+	slider2.position(10, 40);
+	slider2.style('width', width/2+'px');
+	
+	alpha = 0.75;
+	period = 20;
+	change = 0.0;
+	oldValue = 0;
+	oldChange = 0;
+	start = 0;
 	
 	
 	
@@ -38,6 +60,46 @@ function setup() {
 	
 	console.log("ready");
 	console.log(socket);
+	
+	
+	socket.on('seuil', function(data){
+		
+		seuil = data;
+		console.log(seuil);
+	});
+	
+	socket.on('mesure', function(data){
+		//console.log(data);
+		seuil = data.seuil;
+		var value = alpha * oldValue + (1 - alpha) * data.val;
+		data.value = value;
+		//console.log(value);
+		slider2.value(value);
+		change = oldValue - value;
+		data.change = change;
+		//console.log(change);
+		/*if (Math.sign(change) != Math.sign(oldChange)){
+			// crete
+			var now = data.t;
+			t =  now - start;
+			var p = t*2; //periode
+			var bpm = 60000 / p;
+			console.log(p);
+			start = now;
+			
+		}*/
+		
+		oldValue = value;
+		oldChange = change;
+		
+		mesures.push(data);
+		while (mesures.length > 100){
+			//console.log('shift');
+			mesures.shift();
+		}
+	});
+	
+	
   	socket.on('update', function (data) {
 		
 		//var json = JSON.parse(data);
@@ -61,7 +123,70 @@ function draw() {
 	//fill(255-color);
 	fill(bpm, 255-bpm, 0);
 	ellipse(width/2,height/2,bpm,bpm);	
-	text(bpm,100,100);
+	
+	//text(mesures, 100, 200);
+	//fill(255,255,0);
+	stroke(255,255,0);
+	strokeWeight(1);
+	noFill();
+	/*for (var m = 0; m <mesures.length; m++){
+		var t = map(m, 0, mesures.length, 0, width);
+		//var t = mesures[m].t;
+		var v = - height +map(mesures[m].val-800, 0,255, height, 0);
+		rect(t, height, width/mesures.length, v);
+	}*/
+	
+	
+	
+	
+	
+	
+	if (mesures.length>1){
+		//affiche dernière valeur
+		var m = mesures[mesures.length-1];
+		//console.log(m);
+		stroke(0,255,255);
+		strokeWeight(1);
+		/*if ( Math.abs(m.change) > 0.4 ){
+			fill(0,255,255,30);
+		}
+		else{
+			noFill();
+		}*/
+		
+		text("oxygène dans le sang : "+m.val,100,100);
+		text("oxygène dans le sang (lissé): "+m.value,100,120);
+		ellipse(width/4,height/2,m.val,m.val);
+		ellipse(width/4,height/2,m.value,m.value);
+	}
+	
+	/// AFFICHE SEUIL
+	stroke(255,255,0);
+	strokeWeight(1);
+	noFill();
+	//var s = map (seuil, 0, 1023, 0, height/2);
+	text("seuil : "+seuil,100,140);
+	ellipse( width/4,height/2, seuil, seuil);
+	
+	
+	
+	
+	
+	
+	/*
+	
+	for (var i = 0; i< mesures.length; i++){
+		//console.log(Date.now()-mesures[i].t);
+		var x = map(Date.now()-mesures[i].t, 5000, 0, width/2, width);
+		var h =height - map(mesures[i].value, 920, 1050, 0, height/2);
+		//rect(x, height/2, width / mesures.length, h )
+		line (x, height/2, x, h);
+		//line (mouseX, mouseY, x, h);
+	}
+	*/
+	
+	
+	
 	
 	//visu
 	var spectrum = fft.analyze();
@@ -84,6 +209,19 @@ function draw() {
 		vertex(x,y);
 	}
 	endShape();
+	
+	// cardio wave
+	/*beginShape();
+		stroke(255,255,0); // waveform is red
+		strokeWeight(1);
+		for (var i = 0; i< mesures.length; i++){
+		var x = map(i, 0, mesures.length, 0, width);
+		var y = map( mesures[i], -1, 1, 0, height);
+		vertex(x,y);
+		}
+	endShape();*/
+	
+	
 	
 }
 
@@ -112,4 +250,4 @@ function mousePressed() {
 		console.log("stop");
 		song.stop();
 	}
-	}		
+}			
