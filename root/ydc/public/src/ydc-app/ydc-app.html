@@ -69,10 +69,7 @@
     }
     </style>
     <h2>Hello [[prop1]]!</h2>
-    <ydc-canvas></ydc-canvas>
-    <ydc-palette></ydc-palette>
-    <ydc-pinceau></ydc-pinceau>
-    <ydc-menu></ydc-menu>
+
     <div id="container">
       <aside class="toolbar" id="size-toolbar">
       </aside>
@@ -93,6 +90,11 @@
         Forked by scenaristeur at <a href="https://github.com/scenaristeur/sketchpad">Scenaristeur/sketchpad</a>
       </footer>
     </div>
+    <ydc-canvas></ydc-canvas>
+    <ydc-palette></ydc-palette>
+    <ydc-pinceau></ydc-pinceau>
+    <ydc-menu></ydc-menu>
+
   </template>
   <script src="/socket.io/socket.io.js"></script>
   <!--<script src="js/main.js"></script> -->
@@ -108,6 +110,9 @@
         prop1: {
           type: String,
           value: 'ydc-app'
+        },
+        io: {
+          type: Object
         }
       };
     }
@@ -121,6 +126,8 @@
       this.importLazyGroup('lazy').then((results) => {
         this.dispatchEvent(new CustomEvent('import-loaded', results));
       });
+      this.io = io();
+      console.log(this.io)
     }
   }
 
