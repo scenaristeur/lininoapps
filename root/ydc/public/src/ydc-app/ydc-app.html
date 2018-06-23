@@ -3,134 +3,339 @@
 <link rel="import" href="../../bower_components/lazy-imports/lazy-imports-mixin.html">
 
 <dom-module id="ydc-app">
-  <link  rel="lazy-import" group="lazy"  href="../ydc-pad/ydc-pad.html">
+  <!--  <link  rel="lazy-import" group="lazy"  href="../ydc-pad/ydc-pad.html">
   <link  rel="lazy-import" group="lazy"  href="../ydc-palette/ydc-palette.html">
   <link  rel="lazy-import" group="lazy"  href="../ydc-pinceau/ydc-pinceau.html">
   <link  rel="lazy-import" group="lazy"  href="../ydc-menu/ydc-menu.html">
-  <template>
-    <style>
-    :host {
-      display: block;
+<link rel="lazy-import" group="lazy" href="../../bower_components/valle-speed-dial/valle-speed-dial.html">
+<link rel="lazy-import" group="lazy" href="../../bower_components/valle-speed-dial/valle-speed-dial-action.html">
+-->
+<link rel="lazy-import" group="lazy"  href="../../bower_components/color-picker/color-picker.html">
+<link rel="lazy-import" group="lazy"  href="../../bower_components/color-picker/color-element.html">
+<template>
+  <style>
+  :host {
+    display: block;
 
-    }
-    /* minimal reset */
-    * {
-      margin: 0;
-      padding: 0;
-    }
+  }
+  /* minimal reset */
+  * {
+    margin: 0;
+    padding: 0;
+  }
 
-    /* page styles */
-    body {
-      background: #ddd;
-      font-family: sans-serif;
-    }
+  /* page styles */
+  body {
+    background: #ddd;
+    font-family: sans-serif;
+  }
 
-    @media screen and (max-height: 650px) {
-      #size-toolbar {
-        display: none;
-      }
-    }
-
-    @media screen and (max-height: 600px) {
-      #color-toolbar {
-        display: none;
-      }
-    }
-
-    button {
-      border: none;
-      background: #aaa;
-      width: 45px;
-      height: 45px;
-      border-radius: 30px;
-      margin: 2px;
-    }
-
-    #container {
-      width: 800px;
-      margin: 1em auto 0;
-    }
-
-    #scratchpad {
-      background: #eee;
-      box-shadow: 0 0 20px #ccc;
-      cursor: default;
-    }
-
-    #footer {
-      margin-top: 1em;
-      font-size: .6em;
-      color: #888;
-      text-align: center;
-    }
-
-    #footer a {
-      color: #444;
-    }
-    </style>
-    <h2>Hello [[prop1]]!</h2>
-
-    <div id="container">
-      <aside class="toolbar" id="size-toolbar">
-      </aside>
-      <div id="main">
-        <canvas id="scratchpad" width="800" height="500"></canvas>
-      </div>
-      <aside class="toolbar" id="color-toolbar">
-      </aside>
-
-      <footer id="footer">
-
-
-        <div><a href="#" id="download" download="image.png"><button align="center">Sauvegarder <br> l'image</button></a></div><br><br>
-
-        Users connected: <span id="counter">?</span> &middot;
-        Made by <a href="https://mrozwadowski.com/">MR</a> &middot;
-        Fork me on <a href="https://github.com/hejmsdz/sketchpad">GitHub</a>
-        Forked by scenaristeur at <a href="https://github.com/scenaristeur/sketchpad">Scenaristeur/sketchpad</a>
-      </footer>
-    </div>
-    <ydc-canvas></ydc-canvas>
-    <ydc-palette></ydc-palette>
-    <ydc-pinceau></ydc-pinceau>
-    <ydc-menu></ydc-menu>
-
-  </template>
-  <script src="/socket.io/socket.io.js"></script>
-  <!--<script src="js/main.js"></script> -->
-  <script>
-  /**
-  * @customElement
-  * @polymer
-  */
-  class YdcApp extends Polymer.LazyImportsMixin(Polymer.Element) {
-    static get is() { return 'ydc-app'; }
-    static get properties() {
-      return {
-        prop1: {
-          type: String,
-          value: 'ydc-app'
-        },
-        io: {
-          type: Object
-        }
-      };
-    }
-    constructor(){
-      super();
-      Polymer.RenderStatus.afterNextRender(this, function() {
-        this._deferred();
-      });
-    }
-    _deferred(){
-      this.importLazyGroup('lazy').then((results) => {
-        this.dispatchEvent(new CustomEvent('import-loaded', results));
-      });
-      this.io = io();
-      console.log(this.io)
+  @media screen and (max-height: 650px) {
+    #sizetoolbar {
+      display: none;
     }
   }
 
-  window.customElements.define(YdcApp.is, YdcApp);
-  </script>
+  @media screen and (max-height: 600px) {
+    #colortoolbar {
+      display: none;
+    }
+  }
+
+  button {
+    border: none;
+    background: #aaa;
+    width: 45px;
+    height: 45px;
+    border-radius: 30px;
+    margin: 2px;
+  }
+
+  #container {
+    width: 800px;
+    margin: 1em auto 0;
+  }
+
+  #scratchpad {
+    background: #eee;
+    box-shadow: 0 0 20px #ccc;
+    cursor: default;
+  /*  width: 90vw;*/
+  }
+
+  #footer {
+    margin-top: 1em;
+    font-size: .6em;
+    color: #888;
+    text-align: center;
+  }
+
+  #footer a {
+    color: #444;
+  }
+  #dialsize{
+    position: fixed;
+    left: 15px;
+    bottom: 15px;
+    /*--valle-speed-dial-action-fab-color: #d4f442;*/
+    --valle-speed-dial-backdrop-color: rgba(55, 55, 255, 0.5) ; /* rgba(200, 200, 10, 0.2), */
+  }
+  #dialsize-action .label {
+    display: inline-block;
+    left: -158px;
+  }
+  #colorpicker {
+    position: fixed;
+    left: 15px;
+    top: 15px;
+    --color-element-badge-radius: --input-picker-border-radius, 10px
+  }
+  </style>
+  <div id="container">
+    <!--  <aside class="toolbar" id="colortoolbar">-->
+
+  </aside>
+  <div id="main">
+    <canvas id="scratchpad"  width="800" height="500"></canvas>
+  </div>
+  <aside class="toolbar" id="sizetoolbar">
+  </aside>
+
+  <footer id="footer">
+
+
+    <div><a href="#" id="download" download="image.png"><button align="center">Sauvegarder <br> l'image</button></a></div><br><br>
+
+    Users connected: <span id="counter">?</span> &middot;
+    Made by <a href="https://mrozwadowski.com/">MR</a> &middot;
+    Fork me on <a href="https://github.com/hejmsdz/sketchpad">GitHub</a>
+    Forked by scenaristeur at <a href="https://github.com/scenaristeur/sketchpad">Scenaristeur/sketchpad</a>
+  </footer>
+</div>
+<!--  <ydc-canvas></ydc-canvas>
+<ydc-palette></ydc-palette>
+<ydc-pinceau></ydc-pinceau>
+<ydc-menu></ydc-menu>-->
+<!--<valle-speed-dial id="dialsize" direction="top" label="Menu" backdrop >
+  <valle-speed-dial-action
+  class="dial-action"
+  label="Réglages"
+  on-tap="_toggleSettings"
+  label-direction="right"
+  ></valle-speed-dial-action>
+  <valle-speed-dial-action
+  class="dial-action"
+  label="Mode"
+  on-tap="_toggleMode"
+  label-direction="right"
+  ></valle-speed-dial-action>
+  <valle-speed-dial-action
+  class="dial-action"
+  on-tap="_toggleHelp"
+  label="Aide"
+  label-direction="right"
+  ></valle-speed-dial-action>
+</valle-speed-dial> -->
+
+
+<color-picker
+id="colorpicker"
+autoconfirm
+value="{{color}}">
+</color-picker>
+<!--    native -->
+</template>
+<script src="/socket.io/socket.io.js"></script>
+<!--<script src="js/main.js"></script> -->
+<script>
+/**
+* @customElement
+* @polymer
+*/
+class YdcApp extends Polymer.LazyImportsMixin(Polymer.Element) {
+  static get is() { return 'ydc-app'; }
+  static get properties() {
+    return {
+      canvas: {
+        type: Object
+      },
+      socket: {
+        type: Object
+      },
+      sizeToolbar: {
+        type: Object
+      },
+      colorToolbar: {
+        type: Object
+      },
+      counter: {
+        type: Number
+      },
+      color: {
+        type: Object,
+        value: '#000000'
+      }
+    };
+  }
+  constructor(){
+    super();
+    Polymer.RenderStatus.afterNextRender(this, function() {
+      this._deferred();
+    });
+  }
+  _deferred(){
+    this.importLazyGroup('lazy').then((results) => {
+      this.dispatchEvent(new CustomEvent('import-loaded', results));
+    });
+    var app = this;
+    this.canvas = this.$.scratchpad;
+    this.socket = io();
+    this.sizeToolbar = this.$.sizetoolbar;
+    this.colorToolbar = this.$.colortoolbar;
+    this.counter = this.$.counter;
+    var ctx = this.canvas.getContext('2d');
+    var oldPos = {};
+    var size = 4;
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    ctx.fillStyle = "white";
+    ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+
+    // populate the toolbars
+    for (var i=1; i<10; i++) {
+      var lineSize = Math.round(i*2);
+      var el = document.createElement('button');
+      el.innerHTML = lineSize;
+      el.dataset.size = lineSize;
+      el.addEventListener('click', function() {
+        size = this.dataset.size;
+      });
+      this.sizeToolbar.appendChild(el);
+    }
+    /*
+    var colors = [];
+    for (var i=0; i<10; i++) {
+    colors.push('hsl('+(36*i-6)+', 93%, 47%)');
+  }
+  colors.push('#eee', '#222');
+  for (var i=0; i<colors.length; i++) {
+  var el = document.createElement('button');
+  el.dataset.color = colors[i];
+  el.style.background = colors[i];
+  el.addEventListener('click', function() {
+  console.log(this.dataset.color)
+  app.set('color',hsl(this.dataset.color));
+  console.log(app.color)
+});
+this.colorToolbar.appendChild(el);
+}*/
+
+
+function eventToXY(e) {
+  return {
+    x: e.offsetX || e.layerX || e.clientX - app.canvas.offsetLeft,
+    y: e.offsetY || e.layerY || e.clientY - app.canvas.offsetTop
+  };
+}
+
+function line(start, end, size, color) {
+  var oldSize = ctx.lineWidth;
+  var oldColor = ctx.fillStyle;
+
+  ctx.lineWidth = size;
+  ctx.strokeStyle = color;
+
+  ctx.beginPath();
+  ctx.moveTo(start.x, start.y);
+  ctx.lineTo(end.x, end.y);
+  ctx.stroke();
+  ctx.closePath();
+
+  ctx.lineWidth = oldSize;
+  ctx.strokeStyle = oldColor;
+}
+
+function handleStart(e) {
+  oldPos = eventToXY(e);
+  handleMove(e); // draw a single point
+}
+
+function handleMove(e) {
+  var newPos = eventToXY(e);
+  var data = {start: oldPos, end: newPos, size: size, color: app.color};
+  app.socket.emit('line', data);
+  line(oldPos, newPos, size, app.color);
+  oldPos = newPos;
+};
+
+function handleEnd(e) {
+  oldPos = {};
+}
+
+app.canvas.addEventListener('mousedown', function(e) {
+  if (e.which == 1) {
+    handleStart(e);
+  }
+});
+
+app.canvas.addEventListener('mousemove', function(e) {
+  e.preventDefault();
+  if (e.buttons & 1) {
+    handleMove(e);
+  }
+});
+
+app.canvas.addEventListener('mouseout', handleEnd);
+
+app.canvas.addEventListener('touchstart', function(e) {
+  var touches = e.touches;
+  if (touches.length == 1) {
+    handleStart(touches[0]);
+  }
+});
+
+app.canvas.addEventListener('touchmove', function(e) {
+  e.preventDefault();
+  var touches = e.touches;
+  if (touches.length == 1) {
+    //  console.log(eventToXY(touches[0]));
+    handleMove(touches[0]);
+  }
+});
+
+app.canvas.addEventListener('touchend', handleEnd);
+
+// remote events
+app.socket.on('line', function(data) {
+  line(data.start, data.end, data.size, data.color);
+});
+
+app.socket.on('num_clients', function(data) {
+  app.counter.innerHTML = data;
+});
+
+// download
+const download = this.$.download;
+const rand = i=>Math.random()*i<<0;
+const fileName = `image${100+rand(100)}.png`;
+
+function onClickAnchor(e) {
+  app.canvas.style.backgroundColor = 'rgba(158, 167, 184)';
+  if (window.navigator.msSaveBlob) {
+    window.navigator.msSaveBlob(app.canvas.msToBlob(), fileName);
+    e.preventDefault();
+  } else {
+    download.setAttribute('download', fileName);
+    download.setAttribute('href', app.canvas.toDataURL());
+  }
+}
+
+download.addEventListener('click', onClickAnchor);
+
+
+}
+}
+
+window.customElements.define(YdcApp.is, YdcApp);
+</script>
 </dom-module>

@@ -3,7 +3,9 @@
   "main": "index.html",
   "dependencies": {
     "polymer": "Polymer/polymer#^2.0.0",
-    "lazy-imports": "^2.1.0"
+    "lazy-imports": "^2.1.0",
+    "valle-speed-dial": "^1.1.0",
+    "color-picker": "fooloomanzoo/color-picker#^2.0.8"
   },
   "devDependencies": {
     "web-component-tester": "Polymer/web-component-tester#^6.0.0",
