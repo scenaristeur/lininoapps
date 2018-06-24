@@ -344,26 +344,32 @@ app.socket.on('tick', function(data){
 });
 
 app.socket.on('screenshot', function() {
-  console.log("SCREENSHOT PLEASE")
-  var screenshot;
-  if (window.navigator.msSaveBlob) {
-     screenshot = window.navigator.msSaveBlob(app.canvas.msToBlob(), fileName);
-  } else {
-    screenshot =  app.canvas.toDataURL();
-  }
-console.log(screenshot)
-app.socket.emit('screenshot', screenshot);
+app.screenshot();
 });
 
 app.socket.on('lastScreenshot', function(strDataURI){
-  console.log(strDataURI)
+//  console.log(strDataURI)
   var ctx = app.canvas.getContext('2d');
-var img = new Image;
-img.onload = function(){
-  ctx.drawImage(img,0,0); // Or at whatever offset you like
-};
-img.src = strDataURI;
+  var img = new Image;
+  img.onload = function(){
+    ctx.drawImage(img,0,0); // Or at whatever offset you like
+  };
+  img.src = strDataURI;
 })
+
+app.socket.on('disconnect', function() {
+app.screenshot();
+});
+
+/*window.onbeforeunload = function(e) {
+//  app.screenshot();
+    return('Please press the Logout button to logout.') ;
+}*/
+
+window.onbeforeunload = function(){
+  app.screenshot();
+  return 'Are you sure you want to leave?';
+};
 
 
 // download
@@ -373,13 +379,17 @@ const fileName = `image${100+rand(100)}.png`;
 
 function onClickAnchor(e) {
   app.canvas.style.backgroundColor = 'rgba(158, 167, 184)';
+  var screenshot;
   if (window.navigator.msSaveBlob) {
-    window.navigator.msSaveBlob(app.canvas.msToBlob(), fileName);
+    screenshot = app.canvas.msToBlob()
+    window.navigator.msSaveBlob(screenshot, fileName);
     e.preventDefault();
   } else {
+    screenshot = app.canvas.toDataURL();
     download.setAttribute('download', fileName);
-    download.setAttribute('href', app.canvas.toDataURL());
+    download.setAttribute('href', screenshot);
   }
+    app.socket.emit('screenshot', screenshot);
 }
 
 download.addEventListener('click', onClickAnchor);
@@ -394,10 +404,10 @@ launchAsync(tickDelay){
   //async
   app.tickInterval = setInterval(function() {
     //A intervalles réguliers, on envoie à tout utilisateur connecté, un snapshot des dernières modifications et on réinitialise les lines stockées dans le snapshot
-  //  console.log("tick");
+    //  console.log("tick");
     //  console.log(snapshot);
     if(app.snapshotLines.length >0){
-    //  console.log("tock");
+      //  console.log("tock");
       app.sendSnaphotLines();
     }
   }, tickDelay);
@@ -408,7 +418,7 @@ sendLines(data){
     this.socket.emit('line', data);
   }else{
     this.push('snapshotLines', data);
-//    console.log(this.snapshotLines)
+    //    console.log(this.snapshotLines)
   }
 }
 sendSnaphotLines(){
@@ -416,6 +426,22 @@ sendSnaphotLines(){
   //socket.broadcast.emit('tick', snapshot);
   this.snapshotLines = new Array();
 }
+
+screenshot(){
+  console.log("SCREENSHOT PLEASE")
+  var screenshot;
+  if (window.navigator.msSaveBlob) {
+    screenshot = window.navigator.msSaveBlob(this.canvas.msToBlob(), fileName);
+  } else {
+    screenshot =  this.canvas.toDataURL();
+  }
+//  console.log(screenshot)
+  this.socket.emit('screenshot', screenshot);
+}
+
+
+
+
 }
 
 window.customElements.define(YdcApp.is, YdcApp);
