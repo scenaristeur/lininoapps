@@ -7,8 +7,8 @@
   <link  rel="lazy-import" group="lazy"  href="../ydc-palette/ydc-palette.html">
   <link  rel="lazy-import" group="lazy"  href="../ydc-pinceau/ydc-pinceau.html">
   <link  rel="lazy-import" group="lazy"  href="../ydc-menu/ydc-menu.html">
-<link rel="lazy-import" group="lazy" href="../../bower_components/valle-speed-dial/valle-speed-dial.html">
-<link rel="lazy-import" group="lazy" href="../../bower_components/valle-speed-dial/valle-speed-dial-action.html">
+  <link rel="lazy-import" group="lazy" href="../../bower_components/valle-speed-dial/valle-speed-dial.html">
+  <link rel="lazy-import" group="lazy" href="../../bower_components/valle-speed-dial/valle-speed-dial-action.html">
 -->
 <link rel="lazy-import" group="lazy"  href="../../bower_components/color-picker/color-picker.html">
 <link rel="lazy-import" group="lazy"  href="../../bower_components/color-picker/color-element.html">
@@ -60,7 +60,7 @@
     background: #eee;
     box-shadow: 0 0 20px #ccc;
     cursor: default;
-  /*  width: 90vw;*/
+    /*  width: 90vw;*/
   }
 
   #footer {
@@ -99,17 +99,15 @@
     <canvas id="scratchpad"  width="800" height="500"></canvas>
   </div>
   <aside class="toolbar" id="sizetoolbar">
+    <a href="#" id="download" download="image.png"><button align="center">Save</button></a>
+
   </aside>
 
   <footer id="footer">
-
-
-    <div><a href="#" id="download" download="image.png"><button align="center">Sauvegarder <br> l'image</button></a></div><br><br>
-
-    Users connected: <span id="counter">?</span> &middot;
+    Utilisateurs connectés : <span id="counter">?</span> &middot;
     Made by <a href="https://mrozwadowski.com/">MR</a> &middot;
     Fork me on <a href="https://github.com/hejmsdz/sketchpad">GitHub</a>
-    Forked by scenaristeur at <a href="https://github.com/scenaristeur/sketchpad">Scenaristeur/sketchpad</a>
+    Forked by scenaristeur at <a href="https://github.com/scenaristeur/lininoapps/tree/master/root/ydc">Scenaristeur/sketchpad</a>
   </footer>
 </div>
 <!--  <ydc-canvas></ydc-canvas>
@@ -117,24 +115,24 @@
 <ydc-pinceau></ydc-pinceau>
 <ydc-menu></ydc-menu>-->
 <!--<valle-speed-dial id="dialsize" direction="top" label="Menu" backdrop >
-  <valle-speed-dial-action
-  class="dial-action"
-  label="Réglages"
-  on-tap="_toggleSettings"
-  label-direction="right"
-  ></valle-speed-dial-action>
-  <valle-speed-dial-action
-  class="dial-action"
-  label="Mode"
-  on-tap="_toggleMode"
-  label-direction="right"
-  ></valle-speed-dial-action>
-  <valle-speed-dial-action
-  class="dial-action"
-  on-tap="_toggleHelp"
-  label="Aide"
-  label-direction="right"
-  ></valle-speed-dial-action>
+<valle-speed-dial-action
+class="dial-action"
+label="Réglages"
+on-tap="_toggleSettings"
+label-direction="right"
+></valle-speed-dial-action>
+<valle-speed-dial-action
+class="dial-action"
+label="Mode"
+on-tap="_toggleMode"
+label-direction="right"
+></valle-speed-dial-action>
+<valle-speed-dial-action
+class="dial-action"
+on-tap="_toggleHelp"
+label="Aide"
+label-direction="right"
+></valle-speed-dial-action>
 </valle-speed-dial> -->
 
 
@@ -174,6 +172,14 @@ class YdcApp extends Polymer.LazyImportsMixin(Polymer.Element) {
       color: {
         type: Object,
         value: '#000000'
+      },
+      snapshotLines: {
+        type: Array,
+        value: []
+      },
+      tickDelay: {
+        type: Number,
+        value: 1000
       }
     };
   }
@@ -263,7 +269,7 @@ function handleStart(e) {
 function handleMove(e) {
   var newPos = eventToXY(e);
   var data = {start: oldPos, end: newPos, size: size, color: app.color};
-  app.socket.emit('line', data);
+  app.sendLines(data);
   line(oldPos, newPos, size, app.color);
   oldPos = newPos;
 };
@@ -306,13 +312,59 @@ app.canvas.addEventListener('touchmove', function(e) {
 app.canvas.addEventListener('touchend', handleEnd);
 
 // remote events
+app.socket.on('num_clients', function(infos_clients) {
+  //  console.log(infos_clients)
+  //  app.tickDelay = infos_clients.tickDelay;
+  //  console.log(app.tickDelay)
+  app.set('typeSync', infos_clients.typeSync)
+  if(app.typeSync == 'async'){
+    app.launchAsync(infos_clients.tickDelay);
+  }else{
+    if(app.snapshotLines.length >0){
+      console.log("tock");
+      app.io.emit('snapshotLines', app.snapshotLines);
+      app.snapshotLines = new Array();
+    }
+    clearInterval(app.tickInterval);
+  }
+  app.counter.innerHTML = infos_clients.num_clients + " : " +app.typeSync;
+});
+// mode sync
 app.socket.on('line', function(data) {
   line(data.start, data.end, data.size, data.color);
 });
-
-app.socket.on('num_clients', function(data) {
-  app.counter.innerHTML = data;
+//mode async
+app.socket.on('tick', function(data){
+  //  console.log(data);
+  //  console.log(data.lines);
+  let lines = data.lines;
+  lines.forEach(function(l){
+    line(l.start, l.end, l.size, l.color);
+  });
 });
+
+app.socket.on('screenshot', function() {
+  console.log("SCREENSHOT PLEASE")
+  var screenshot;
+  if (window.navigator.msSaveBlob) {
+     screenshot = window.navigator.msSaveBlob(app.canvas.msToBlob(), fileName);
+  } else {
+    screenshot =  app.canvas.toDataURL();
+  }
+console.log(screenshot)
+app.socket.emit('screenshot', screenshot);
+});
+
+app.socket.on('lastScreenshot', function(strDataURI){
+  console.log(strDataURI)
+  var ctx = app.canvas.getContext('2d');
+var img = new Image;
+img.onload = function(){
+  ctx.drawImage(img,0,0); // Or at whatever offset you like
+};
+img.src = strDataURI;
+})
+
 
 // download
 const download = this.$.download;
@@ -333,6 +385,36 @@ function onClickAnchor(e) {
 download.addEventListener('click', onClickAnchor);
 
 
+}
+
+launchAsync(tickDelay){
+  var app = this;
+  tickDelay = tickDelay + Math.floor(Math.random() * tickDelay ); // DEcalage pour que tous les clients n'envoie pas en même temps
+
+  //async
+  app.tickInterval = setInterval(function() {
+    //A intervalles réguliers, on envoie à tout utilisateur connecté, un snapshot des dernières modifications et on réinitialise les lines stockées dans le snapshot
+  //  console.log("tick");
+    //  console.log(snapshot);
+    if(app.snapshotLines.length >0){
+    //  console.log("tock");
+      app.sendSnaphotLines();
+    }
+  }, tickDelay);
+}
+
+sendLines(data){
+  if (this.typeSync == "sync"){
+    this.socket.emit('line', data);
+  }else{
+    this.push('snapshotLines', data);
+//    console.log(this.snapshotLines)
+  }
+}
+sendSnaphotLines(){
+  this.socket.emit('snapshotLines', this.snapshotLines);
+  //socket.broadcast.emit('tick', snapshot);
+  this.snapshotLines = new Array();
 }
 }
 
